@@ -23,10 +23,12 @@ curl -fsSL https://static.rust-lang.org/rustup/release-stable.toml |
 
 [download]
 type = "command"
-# the default profile without its offline docs, which take several hundred MB
+# the default profile without its offline docs, which take several hundred MB; PMG_RUST_TOOLCHAIN
+# picks another toolchain than stable
 cmd = '''
-curl -fsSL https://sh.rustup.rs | sh -s -- -y --no-modify-path --default-toolchain stable \
-  --profile minimal --component rustfmt,clippy --no-update-default-toolchain
+curl -fsSL https://sh.rustup.rs | sh -s -- -y --no-modify-path \
+  --default-toolchain "${PMG_RUST_TOOLCHAIN:-stable}" --profile minimal \
+  --component rustfmt,clippy --no-update-default-toolchain
 '''
 
 [assets]
