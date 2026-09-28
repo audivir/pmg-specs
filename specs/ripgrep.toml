@@ -1,0 +1,26 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { rg = "rg" }
+man = ["doc/rg.1"]
+completions.rg.zsh = "complete/_rg"
+completions.rg.bash = "complete/rg.bash"
+completions.rg.fish = "complete/rg.fish"
+
+[external]
+brew = "ripgrep"
+apt = "ripgrep"
+apk = "ripgrep"
+dnf = "ripgrep"
+yum = "ripgrep"
+
+[release]
+type = "github"
+repo = "burntsushi/ripgrep"
+
+[download]
+type = "github"
+
+[assets]
+glibc_arm64 = "ripgrep-{{ tag }}-aarch64-unknown-linux-gnu.tar.gz"
+musl_x64 = "ripgrep-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "ripgrep-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
+macos_arm64 = "ripgrep-{{ tag }}-aarch64-apple-darwin.tar.gz"
