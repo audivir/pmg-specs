@@ -20,6 +20,7 @@ repo = "burntsushi/ripgrep"
 type = "github"
 
 [assets]
+glibc_x64 = "ripgrep-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
 glibc_arm64 = "ripgrep-{{ tag }}-aarch64-unknown-linux-gnu.tar.gz"
 musl_x64 = "ripgrep-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
 musl_arm64 = "ripgrep-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
