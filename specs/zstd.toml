@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 deps = ["cc", "make"]
 post_install = '''
 make -C "$CONTENT/programs" -j4 zstd HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 >/dev/null

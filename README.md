@@ -20,8 +20,8 @@ Each spec in `specs/` is named after its package. Files a spec needs, like the w
 micromamba, go into a directory named like the spec (`specs/micromamba/`), which the spec reaches
 with `{{ spec_dir }}`.
 
-`schema.json` is the JSON schema of specs, generated with `python -m pmg schema`. Every spec
-references it in its first line, so editors and `taplo check` validate the specs.
+Every spec references the JSON schema of pmg in its first line, so editors and `taplo check`
+validate it. The CI checks all specs with `pmg validate` and `taplo check`.
 
 ## License
 

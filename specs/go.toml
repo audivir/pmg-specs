@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # GOPATH holds the module cache and the tools from go install, so it is not owned by go
 # the release and download commands use curl
 deps = ["curl"]

@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # GCC's libstdc++ and libgcc_s for musl hosts without them, e.g. for bun and Rust
 platforms = ["musl_x64", "musl_arm64"]
 deps = ["patchelf"]

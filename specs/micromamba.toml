@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # there is no musl build, so musl hosts run the glibc build with the glibc of pmg, through a wrapper
 # that also patches the glibc programs micromamba installs
 deps = ["glibc"]

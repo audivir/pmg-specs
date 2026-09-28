@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # user-space glibc for musl hosts, from the sysroot conda-forge builds against; glibc programs need
 # `patchelf --set-interpreter {{ dir }}/loader`
 platforms = ["musl_x64", "musl_arm64"]

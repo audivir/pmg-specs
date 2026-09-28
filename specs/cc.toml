@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # a C compiler through zig for hosts without one, for building from source and linking Rust
 deps = ["zig"]
 check = { dev_tool = true }

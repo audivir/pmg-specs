@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # statically linked, so the same build runs on glibc and musl hosts
 platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
 bin = { patchelf = "bin/patchelf" }

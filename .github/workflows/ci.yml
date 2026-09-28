@@ -13,3 +13,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: j178/prek-action@v3.0.0
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.0.1
+      - run: uvx --from https://github.com/audivir/pmg/archive/main.tar.gz pmg validate specs/*.toml
+      - run: uvx --from taplo taplo check specs/*.toml

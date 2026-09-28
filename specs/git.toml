@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # git finds libexec and share relative to the real path of its binary, so the whole archive is the
 # package dir and bin gets symlinks
 content = true

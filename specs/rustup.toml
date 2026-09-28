@@ -1,4 +1,4 @@
-#:schema ../schema.json
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # rustup updates itself and its toolchains, so pmg owns the dirs rather than their files;
 # cargo install adds binaries to cargo/bin, which is why it is a PATH entry instead of links
 
