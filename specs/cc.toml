@@ -6,6 +6,8 @@ check = { dev_tool = true }
 [external]
 apt = "gcc"
 apk = "gcc"
+dnf = "gcc"
+yum = "gcc"
 
 [release]
 type = "static"

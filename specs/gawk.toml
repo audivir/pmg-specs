@@ -15,6 +15,8 @@ cp gawk "$PREFIX/bin/gawk"
 brew = "gawk"
 apt = "gawk"
 apk = "gawk"
+dnf = "gawk"
+yum = "gawk"
 
 [release]
 type = "command"

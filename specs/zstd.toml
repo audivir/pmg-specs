@@ -9,6 +9,7 @@ cp "$CONTENT/programs/zstd" "$PREFIX/bin/zstd"
 brew = "zstd"
 apt = "zstd"
 apk = "zstd"
+dnf = "zstd"
 
 [release]
 type = "github"

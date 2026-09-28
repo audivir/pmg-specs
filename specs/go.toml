@@ -12,6 +12,7 @@ check = { args = ["version"] }
 brew = "go"
 apt = "golang"
 apk = "go"
+dnf = "golang"
 
 [release]
 type = "command"

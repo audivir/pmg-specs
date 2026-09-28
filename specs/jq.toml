@@ -5,6 +5,7 @@ bin = { jq = "{{ asset }}" }
 brew = "jq"
 apt = "jq"
 apk = "jq"
+dnf = "jq"
 
 [release]
 type = "github"

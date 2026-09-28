@@ -24,6 +24,8 @@ check = { dev_tool = true }
 brew = "git"
 apt = "git ca-certificates"
 apk = "git"
+dnf = "git"
+yum = "git"
 
 [release]
 type = "github"

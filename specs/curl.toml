@@ -5,6 +5,8 @@ bin = { curl = "curl" }
 [external]
 apt = "curl ca-certificates"
 apk = "curl"
+dnf = "curl"
+yum = "curl"
 
 [release]
 type = "github"
