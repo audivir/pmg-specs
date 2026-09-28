@@ -22,7 +22,7 @@ check = { dev_tool = true }
 
 [external]
 brew = "git"
-apt = "git"
+apt = "git ca-certificates"
 apk = "git"
 
 [release]
