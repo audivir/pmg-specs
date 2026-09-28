@@ -1,10 +1,11 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 deps = ["curl", "cc"]
 check = { dev_tool = true }
-# zig ar lacks the u flag of the default ARFLAGS, and configure wants a linker in LD
+# zig ar lacks the u flag of the default ARFLAGS, configure wants a linker in LD, and it would try
+# gcc first, a stub on macOS without developer tools
 post_install = '''
 cd "$CONTENT"
-export ARFLAGS=cr LD=cc
+export ARFLAGS=cr CC=cc LD=cc
 ./configure --disable-nls --disable-dependency-tracking --without-guile >/dev/null
 sh build.sh >/dev/null
 cp make "$PREFIX/bin/make"
