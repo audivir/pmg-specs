@@ -2,7 +2,6 @@
 # GOPATH holds the module cache and the tools from go install, so it is not owned by go
 # the release and download commands use curl
 deps = ["curl"]
-dir = "{{ data }}/golang"
 content = true
 env = { GOROOT = "{{ dir }}", GOPATH = "{{ data }}/go" }
 paths = ["{{ dir }}/bin", "{{ data }}/go/bin"]
