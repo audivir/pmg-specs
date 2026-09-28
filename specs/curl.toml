@@ -3,7 +3,7 @@
 bin = { curl = "curl" }
 
 [external]
-apt = "curl"
+apt = "curl ca-certificates"
 apk = "curl"
 
 [release]
