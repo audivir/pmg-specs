@@ -1,6 +1,6 @@
 # pmg-specs
 
-Package specs for [pmg](https://github.com/audivir/zshsetup/tree/main/pmg), a package manager for
+Package specs for [pmg](https://github.com/audivir/pmg), a package manager for
 prebuilt binaries in the home directory. `pmg update` downloads them, and `pmg install` finds a spec
 here when neither `$PMG_SPECS_DIR` nor `$PMG_HOME/specs` has one.
 
