@@ -10,6 +10,7 @@ post_install = """patchelf --set-rpath '$ORIGIN' "$PREFIX"/dir/usr/lib/libstdc++
 
 test = 'test -f "{{ dir }}/usr/lib/libstdc++.so.6" && test -f "{{ dir }}/usr/lib/libgcc_s.so.1"'
 [external]
+# only apk, as the package is only for musl hosts
 apk = "libstdc++"
 
 [release]

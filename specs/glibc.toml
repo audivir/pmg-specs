@@ -18,6 +18,7 @@ post_install = 'cd "$PREFIX/dir" && ln -s lib64/ld-linux-*.so.* loader'
 
 test = '"{{ dir }}/loader" --version'
 [external]
+# none, as musl hosts have no glibc package
 
 [release]
 type = "conda"

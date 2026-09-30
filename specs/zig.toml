@@ -9,6 +9,7 @@ check = { args = ["version"] }
 test = "{{ cmd }} env"
 [external]
 brew = "zig"
+# not apt or yum, which lack it, nor dnf, whose EPEL has it only for x86_64
 apk = "zig"
 
 [release]

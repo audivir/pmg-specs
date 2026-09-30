@@ -11,6 +11,8 @@ test = "{{ cmd }} --version"
 brew = "bat"
 # not apt, which names the command batcat
 apk = "bat"
+dnf = "bat"
+# not yum, as CentOS 7 lacks it
 
 [release]
 type = "github"

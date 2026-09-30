@@ -10,6 +10,8 @@ test = "{{ cmd }} --version"
 brew = "patchelf"
 apt = "patchelf"
 apk = "patchelf"
+dnf = "patchelf"
+yum = "patchelf"
 
 [release]
 type = "github"

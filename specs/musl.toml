@@ -9,6 +9,7 @@ check = { files = ["/lib/ld-musl-{{ arch }}.so.1"] }
 
 test = 'test -x "{{ dir }}/lib/ld-musl-{{ arch }}.so.1"'
 [external]
+# only apt, as the package is only for glibc hosts and dnf and yum lack it
 apt = "musl"
 
 [release]

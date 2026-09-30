@@ -8,6 +8,7 @@ completions.uv.fish.cmd = "uv generate-shell-completion fish"
 test = "{{ cmd }} --version"
 [external]
 brew = "uv"
+# not apt, dnf, or yum, which lack it
 apk = "uv"
 
 [release]

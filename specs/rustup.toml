@@ -17,7 +17,7 @@ test = '{{ cmd }} --version && {{ cmds.cargo }} --version && {{ cmds.rustc }} --
 [external]
 brew = "rustup"
 apt = "rustup"
-# not apk, whose package only has rustup-init
+# not apk, whose package only has rustup-init, nor dnf or yum, which lack it
 
 [release]
 type = "command"

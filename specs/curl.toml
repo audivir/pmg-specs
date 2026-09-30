@@ -4,6 +4,7 @@ bin = { curl = "curl" }
 
 test = "{{ cmd }} --version"
 [external]
+# not brew, whose curl is not linked into PATH, as macOS ships curl
 apt = "curl ca-certificates"
 apk = "curl"
 dnf = "curl"

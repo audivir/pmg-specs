@@ -9,6 +9,7 @@ printf 'int main(void) { return 0; }\n' > test.c
 ./test
 '''
 [external]
+# not brew, as macOS has cc from its developer tools
 apt = "gcc"
 apk = "gcc"
 dnf = "gcc"

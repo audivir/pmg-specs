@@ -20,7 +20,7 @@ chmod +x "$PREFIX/bin/micromamba"
 test = "{{ cmd }} --version"
 [external]
 brew = "micromamba"
-# not apt, as Ubuntu 24.04 lacks it
+# not apt, apk, dnf, or yum, which lack it
 
 [release]
 type = "github"

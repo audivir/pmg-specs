@@ -13,6 +13,7 @@ brew = "go"
 apt = "golang"
 apk = "go"
 dnf = "golang"
+yum = "golang"
 
 [release]
 type = "command"

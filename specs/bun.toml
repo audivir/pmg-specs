@@ -11,6 +11,7 @@ patchelf --set-rpath '{{ deps["musl-libs"].dir }}/usr/lib' "$PREFIX/bin/bun"
 test = "{{ cmd }} --version"
 [external]
 brew = "oven-sh/bun/bun"
+# not apt, apk, dnf, or yum, which lack it
 
 [release]
 type = "github"

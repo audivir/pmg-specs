@@ -11,6 +11,7 @@ brew = "zstd"
 apt = "zstd"
 apk = "zstd"
 dnf = "zstd"
+yum = "zstd"
 
 [release]
 type = "github"

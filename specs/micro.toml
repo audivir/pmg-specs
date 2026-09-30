@@ -7,6 +7,8 @@ test = "{{ cmd }} -version"
 brew = "micro"
 apt = "micro"
 apk = "micro"
+dnf = "micro"
+# not yum, as CentOS 7 lacks it
 
 [release]
 type = "github"

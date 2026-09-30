@@ -41,6 +41,8 @@ test = '{{ cmd }} -fc "zmodload zsh/datetime"'
 brew = "zsh"
 apt = "zsh"
 apk = "zsh"
+dnf = "zsh"
+yum = "zsh"
 
 [release]
 type = "github"
