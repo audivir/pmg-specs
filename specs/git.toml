@@ -20,6 +20,7 @@ done
 completions.git = { bash = "share/bash-completion/completions/git" }
 check = { dev_tool = true }
 
+test = '{{ cmd }} init -q repo && {{ cmd }} -C repo status'
 [external]
 brew = "git"
 apt = "git ca-certificates"

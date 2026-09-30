@@ -5,6 +5,7 @@ completions.uv.zsh.cmd = "uv generate-shell-completion zsh"
 completions.uv.bash.cmd = "uv generate-shell-completion bash"
 completions.uv.fish.cmd = "uv generate-shell-completion fish"
 
+test = "{{ cmd }} --version"
 [external]
 brew = "uv"
 apk = "uv"

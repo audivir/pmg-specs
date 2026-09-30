@@ -9,6 +9,7 @@ env = { RUSTUP_HOME = "{{ dir }}", CARGO_HOME = "{{ dirs.cargo }}" }
 paths = ["{{ dirs.cargo }}/bin"]
 upgrade = "{{ dirs.cargo }}/bin/rustup self update"
 
+test = '{{ cmd }} --version && {{ cmds.cargo }} --version && {{ cmds.rustc }} --version'
 [external]
 brew = "rustup"
 apt = "rustup"

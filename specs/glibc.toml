@@ -16,6 +16,7 @@ remove = [
 ]
 post_install = 'cd "$PREFIX/dir" && ln -s lib64/ld-linux-*.so.* loader'
 
+test = '"{{ dir }}/loader" --version'
 [external]
 
 [release]

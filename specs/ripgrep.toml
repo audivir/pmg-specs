@@ -5,6 +5,7 @@ completions.rg.zsh = "complete/_rg"
 completions.rg.bash = "complete/rg.bash"
 completions.rg.fish = "complete/rg.fish"
 
+test = "{{ cmd }} --version"
 [external]
 brew = "ripgrep"
 apt = "ripgrep"

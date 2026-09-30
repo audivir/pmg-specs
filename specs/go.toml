@@ -7,6 +7,7 @@ env = { GOROOT = "{{ dir }}", GOPATH = "{{ data }}/go" }
 paths = ["{{ dir }}/bin", "{{ data }}/go/bin"]
 check = { args = ["version"] }
 
+test = "{{ cmd }} version"
 [external]
 brew = "go"
 apt = "golang"

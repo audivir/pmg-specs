@@ -3,6 +3,11 @@
 deps = ["zig"]
 check = { dev_tool = true }
 
+test = '''
+printf 'int main(void) { return 0; }\n' > test.c
+{{ cmd }} test.c -o test
+./test
+'''
 [external]
 apt = "gcc"
 apk = "gcc"

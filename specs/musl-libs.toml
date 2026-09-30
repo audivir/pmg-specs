@@ -8,6 +8,7 @@ check = { libs = ["libstdc++.so.6", "libgcc_s.so.1"] }
 # musl looks up the dependencies of a library in the RUNPATH of that library
 post_install = """patchelf --set-rpath '$ORIGIN' "$PREFIX"/dir/usr/lib/libstdc++.so.6.*"""
 
+test = 'test -f "{{ dir }}/usr/lib/libstdc++.so.6" && test -f "{{ dir }}/usr/lib/libgcc_s.so.1"'
 [external]
 apk = "libstdc++"
 

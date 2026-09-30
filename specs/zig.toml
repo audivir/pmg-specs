@@ -6,6 +6,7 @@ content = true
 links = { zig = "{{ dir }}/zig" }
 check = { args = ["version"] }
 
+test = "{{ cmd }} env"
 [external]
 brew = "zig"
 apk = "zig"

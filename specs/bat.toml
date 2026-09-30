@@ -6,6 +6,7 @@ completions.bat.zsh = "autocomplete/bat.zsh"
 completions.bat.bash = "autocomplete/bat.bash"
 completions.bat.fish = "autocomplete/bat.fish"
 
+test = "{{ cmd }} --version"
 [external]
 brew = "bat"
 apt = "bat"

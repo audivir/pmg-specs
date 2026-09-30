@@ -11,6 +11,7 @@ sh build.sh >/dev/null
 cp make "$PREFIX/bin/make"
 '''
 
+test = "{{ cmd }} --version"
 [external]
 brew = "make"
 apt = "make"

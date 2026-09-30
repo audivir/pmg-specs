@@ -2,6 +2,7 @@
 # the static musl build runs on all Linux hosts, the glibc one crashes on older glibc
 bin = { curl = "curl" }
 
+test = "{{ cmd }} --version"
 [external]
 apt = "curl ca-certificates"
 apk = "curl"

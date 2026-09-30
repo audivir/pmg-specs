@@ -5,6 +5,7 @@ make -C "$CONTENT/programs" -j4 zstd HAVE_ZLIB=0 HAVE_LZMA=0 HAVE_LZ4=0 >/dev/nu
 cp "$CONTENT/programs/zstd" "$PREFIX/bin/zstd"
 '''
 
+test = 'test "$(echo pmg | {{ cmd }} | {{ cmd }} -d)" = pmg'
 [external]
 brew = "zstd"
 apt = "zstd"

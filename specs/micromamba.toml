@@ -17,6 +17,7 @@ chmod +x "$PREFIX/bin/micromamba"
 {% endif %}
 '''
 
+test = "{{ cmd }} --version"
 [external]
 brew = "micromamba"
 apt = "micromamba"

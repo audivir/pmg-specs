@@ -36,6 +36,7 @@ cd "$PREFIX/dir"
   done'
 '''
 
+test = '{{ cmd }} -fc "zmodload zsh/datetime"'
 [external]
 brew = "zsh"
 apt = "zsh"

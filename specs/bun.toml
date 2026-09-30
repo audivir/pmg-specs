@@ -8,6 +8,7 @@ patchelf --set-rpath '{{ deps["musl-libs"].dir }}/usr/lib' "$PREFIX/bin/bun"
 {% endif %}
 """
 
+test = "{{ cmd }} --version"
 [external]
 brew = "oven-sh/bun/bun"
 

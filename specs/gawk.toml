@@ -11,6 +11,7 @@ make -j4 >/dev/null
 cp gawk "$PREFIX/bin/gawk"
 '''
 
+test = '''test "$({{ cmd }} 'BEGIN { print 1 + 1 }')" = 2'''
 [external]
 brew = "gawk"
 apt = "gawk"

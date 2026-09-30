@@ -7,6 +7,7 @@ content = true
 keep = ["lib/ld-musl-*.so.1"]
 check = { files = ["/lib/ld-musl-{{ arch }}.so.1"] }
 
+test = 'test -x "{{ dir }}/lib/ld-musl-{{ arch }}.so.1"'
 [external]
 apt = "musl"
 
