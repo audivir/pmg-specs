@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+min_glibc = "2.18"
 bin = { rg = "rg" }
 man = ["doc/rg.1"]
 completions.rg.zsh = "complete/_rg"
@@ -11,7 +12,6 @@ brew = "ripgrep"
 apt = "ripgrep"
 apk = "ripgrep"
 dnf = "ripgrep"
-yum = "ripgrep"
 
 [release]
 type = "github"
