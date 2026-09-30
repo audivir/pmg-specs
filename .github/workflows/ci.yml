@@ -20,3 +20,71 @@ jobs:
       - uses: astral-sh/setup-uv@v10.0.1
       - run: uvx --from https://github.com/audivir/pmg/archive/main.tar.gz pmg validate specs/*.toml
       - run: uvx --from taplo taplo check specs/*.toml
+  changes:
+    # the specs changed by the push or pull request, all of them if the install CI changed or on
+    # a manual run; files next to a spec, in the dir named like it, count for the spec
+    runs-on: ubuntu-latest
+    outputs:
+      specs: ${{ steps.specs.outputs.specs }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - id: specs
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          all() { ls specs/*.toml; }
+          if [ "$GITHUB_EVENT_NAME" = workflow_dispatch ] || ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+            files=$(all)
+          else
+            files=$(git diff --name-only "$BASE" HEAD -- specs .github/scripts/install-specs.sh .github/workflows/ci.yml)
+            if printf '%s\n' "$files" | grep -q '^\.github/'; then
+              files=$(all)
+            fi
+          fi
+          specs=$(printf '%s\n' "$files" | sed -n 's|^specs/\([^/.]*\)[/.].*|\1|p' | sort -u |
+            while read -r name; do [ ! -f "specs/$name.toml" ] || echo "$name"; done | xargs)
+          echo "specs: $specs"
+          echo "specs=$specs" >> "$GITHUB_OUTPUT"
+  install:
+    # the changed specs on each platform and system package manager, from pmg and from the system
+    needs: changes
+    if: needs.changes.outputs.specs != ''
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runner: [ubuntu-24.04, ubuntu-24.04-arm]
+        # empty for Ubuntu (apt) on the runner itself
+        image: ["", "alpine:latest", "centos:7", "rockylinux/rockylinux:9"]
+        include:
+          # Homebrew
+          - runner: macos-15
+            image: ""
+    name: install (${{ matrix.image || matrix.runner }}, ${{ (contains(matrix.runner, '-arm') || startsWith(matrix.runner, 'macos')) && 'arm64' || 'x64' }})
+    env:
+      SPECS: ${{ needs.changes.outputs.specs }}
+      PMG_GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7
+      - if: matrix.image == ''
+        uses: astral-sh/setup-uv@v10.0.1
+      - if: matrix.image == ''
+        run: .github/scripts/install-specs.sh $SPECS
+      - if: matrix.image != ''
+        # the static musl build of uv runs in all the containers, whose actions would need node
+        run: |
+          mkdir "$RUNNER_TEMP/uv"
+          curl -fsSL "https://github.com/astral-sh/uv/releases/latest/download/uv-$(uname -m)-unknown-linux-musl.tar.gz" |
+            tar -xz --strip-components 1 -C "$RUNNER_TEMP/uv"
+      - if: startsWith(matrix.image, 'centos:')
+        # CentOS 7 is end of life, its packages are only in the vault
+        run: |
+          echo 'sed -i -e "s|^mirrorlist=|#mirrorlist=|" -e "s|^#\?baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|" /etc/yum.repos.d/*.repo' > "$RUNNER_TEMP/prepare.sh"
+      - if: matrix.image != ''
+        run: |
+          touch "$RUNNER_TEMP/prepare.sh"
+          docker run --rm -v "$PWD:/specs" -v "$RUNNER_TEMP:/ci" -w /specs \
+            -e SPECS -e PMG_GH_TOKEN -e PATH="/ci/uv:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+            "${{ matrix.image }}" sh -c '. /ci/prepare.sh && .github/scripts/install-specs.sh $SPECS'
