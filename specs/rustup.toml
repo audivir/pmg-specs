@@ -13,7 +13,7 @@ test = '{{ cmd }} --version && {{ cmds.cargo }} --version && {{ cmds.rustc }} --
 [external]
 brew = "rustup"
 apt = "rustup"
-apk = "rustup"
+# not apk, whose package only has rustup-init
 
 [release]
 type = "command"

@@ -12,6 +12,7 @@ brew = "ripgrep"
 apt = "ripgrep"
 apk = "ripgrep"
 dnf = "ripgrep"
+# not yum, as neither CentOS 7 nor EPEL 7 has it
 
 [release]
 type = "github"

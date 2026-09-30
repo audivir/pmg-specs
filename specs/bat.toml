@@ -9,7 +9,7 @@ completions.bat.fish = "autocomplete/bat.fish"
 test = "{{ cmd }} --version"
 [external]
 brew = "bat"
-apt = "bat"
+# not apt, which names the command batcat
 apk = "bat"
 
 [release]

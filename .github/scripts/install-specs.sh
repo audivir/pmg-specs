@@ -35,7 +35,8 @@ system_install() {
     brew) brew install --quiet "$@" ;;
     apt) $sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y -qq --no-install-recommends "$@" ;;
     apk) $sudo apk add --quiet "$@" ;;
-    dnf) $sudo dnf install -y -q "$@" ;;
+    # Rocky Linux ships curl-minimal, which curl replaces
+    dnf) $sudo dnf install -y -q --allowerasing "$@" ;;
     yum) $sudo yum install -y -q "$@" ;;
   esac
 }
