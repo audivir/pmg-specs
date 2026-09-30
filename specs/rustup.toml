@@ -5,7 +5,10 @@
 # the release and download commands use curl, Rust links with cc, and on musl needs libgcc_s
 deps = ["curl", "cc", "musl-libs"]
 dirs = { cargo = "{{ data }}/cargo" }
-env = { RUSTUP_HOME = "{{ dir }}", CARGO_HOME = "{{ dirs.cargo }}" }
+env.RUSTUP_HOME = "{{ dir }}"
+env.CARGO_HOME = "{{ dirs.cargo }}"
+# the toolchains link libgcc_s, which bare musl hosts only have from musl-libs
+env.LD_LIBRARY_PATH = "{% if deps['musl-libs'].dir %}{{ deps['musl-libs'].dir }}/usr/lib{% endif %}"
 paths = ["{{ dirs.cargo }}/bin"]
 upgrade = "{{ dirs.cargo }}/bin/rustup self update"
 
