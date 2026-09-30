@@ -7,7 +7,9 @@ deps = ["curl", "cc", "musl-libs"]
 dirs = { cargo = "{{ data }}/cargo" }
 env = { RUSTUP_HOME = "{{ dir }}", CARGO_HOME = "{{ dirs.cargo }}" }
 # the toolchains link libgcc_s, which bare musl hosts only have from musl-libs
-prepend.LD_LIBRARY_PATH = ["{% if deps['musl-libs'].dir %}{{ deps['musl-libs'].dir }}/usr/lib{% endif %}"]
+prepend.LD_LIBRARY_PATH = [
+  "{% if deps['musl-libs'].dir %}{{ deps['musl-libs'].dir }}/usr/lib{% endif %}",
+]
 paths = ["{{ dirs.cargo }}/bin"]
 upgrade = "{{ dirs.cargo }}/bin/rustup self update"
 
