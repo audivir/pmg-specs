@@ -2,7 +2,7 @@
 # min_glibc = "2.26"
 # the release and download commands use curl, and the binary is zstd-compressed
 deps = ["curl", "zstd"]
-check = { cmd = ["claude"] }
+check = { cmd = ["claude", "--version"] }
 
 test = "{{ cmd }} --version"
 [external]
