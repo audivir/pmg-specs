@@ -1,7 +1,9 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # user-space glibc for musl hosts, from the sysroot conda-forge builds against; glibc programs need
-# `patchelf --set-interpreter {{ dir }}/loader`
+# `patchelf --set-interpreter {{ dir }}/loader`; older glibc hosts count as musl hosts, so that it
+# also serves the musl assets they get through min_glibc
 platforms = ["musl_x64", "musl_arm64"]
+min_glibc = "2.39"
 deps = ["patchelf"]
 content = "*-conda-linux-gnu/sysroot"
 # only the shared libraries are needed at runtime; glibc reads locales and gconv modules from the

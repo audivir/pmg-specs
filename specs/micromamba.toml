@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # there is no musl build, so musl hosts run the glibc build with the glibc of pmg, through a wrapper
 # that also patches the glibc programs micromamba installs
-deps = ["glibc"]
+platform_deps = { musl_x64 = ["glibc"], musl_arm64 = ["glibc"] }
 # micromamba only runs under its own name, so bin gets a link to it in the package dir
 links = { micromamba = "{{ dir }}/micromamba" }
 post_install = '''
