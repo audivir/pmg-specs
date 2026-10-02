@@ -1,0 +1,29 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { gh = "bin/gh" }
+# a man page for each subcommand, too many to list
+post_install = 'mkdir -p "$PREFIX/man/man1" && cp "$CONTENT"/share/man/man1/*.1 "$PREFIX/man/man1/"'
+completions.gh.zsh.cmd = "gh completion -s zsh"
+completions.gh.bash.cmd = "gh completion -s bash"
+completions.gh.fish.cmd = "gh completion -s fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "gh"
+apt = "gh"
+apk = "github-cli"
+dnf = "gh"
+# not yum, as neither CentOS 7 nor EPEL 7 has it
+
+[release]
+type = "github"
+repo = "cli/cli"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "gh_{{ version }}_linux_amd64.tar.gz"
+glibc_arm64 = "gh_{{ version }}_linux_arm64.tar.gz"
+musl_x64 = "gh_{{ version }}_linux_amd64.tar.gz"
+musl_arm64 = "gh_{{ version }}_linux_arm64.tar.gz"
+macos_arm64 = "gh_{{ version }}_macOS_arm64.zip"
