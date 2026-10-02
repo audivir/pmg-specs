@@ -7,7 +7,7 @@ check = { cmd = ["claude", "--version"] }
 test = "{{ cmd }} --version"
 [external]
 brew = "claude-code"
-# not on apk, others not checked yet
+# not apt, apk, dnf, or yum, which lack it
 
 [release]
 type = "command"

@@ -1,0 +1,28 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the tag is the version and build of the release, as in its URL; the release command uses curl
+deps = ["curl"]
+bin = { agy = "antigravity" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "antigravity-cli"
+# not apt, apk, dnf, or yum, which lack it
+
+[release]
+type = "command"
+cmd = '''
+curl -fsSL https://antigravity-cli-auto-updater-974169037036.us-central1.run.app/manifests/linux_amd64.json |
+  grep -o '/antigravity-cli/[^/]*/' |
+  awk -F/ 'NR == 1 {print $3}'
+'''
+
+[download]
+type = "url"
+url = "https://storage.googleapis.com/antigravity-public/antigravity-cli/{{ tag }}/{{ asset }}"
+
+[assets]
+glibc_x64 = "linux-x64/cli_linux_x64.tar.gz"
+glibc_arm64 = "linux-arm/cli_linux_arm64.tar.gz"
+musl_x64 = "linux-x64/cli_linux_x64.tar.gz"
+musl_arm64 = "linux-arm/cli_linux_arm64.tar.gz"
+macos_arm64 = "darwin-arm/cli_mac_arm64.tar.gz"
