@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # min_glibc = "2.26"
-deps = ["zstd"]
-bin = { claude = "claude" }
+# the release and download commands use curl, and the binary is zstd-compressed
+deps = ["curl", "zstd"]
 
 test = "{{ cmd }} --version"
 [external]
@@ -13,8 +13,12 @@ type = "command"
 cmd = "curl -fsSL https://downloads.claude.ai/claude-code-releases/latest"
 
 [download]
-type = "url"
-url = "https://downloads.claude.ai/claude-code-releases/{{ version }}/{{ asset }}/claude.zst"
+type = "command"
+cmd = '''
+curl -fsSL "https://downloads.claude.ai/claude-code-releases/{{ version }}/{{ asset }}/claude.zst" |
+  zstd -d -o "$PREFIX/bin/claude"
+chmod +x "$PREFIX/bin/claude"
+'''
 
 [assets]
 glibc_x64 = "linux-x64"
