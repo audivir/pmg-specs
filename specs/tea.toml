@@ -1,0 +1,32 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the release command uses curl
+deps = ["curl"]
+bin = { tea = "{{ asset }}" }
+post_install = 'mkdir -p "$PREFIX/man/man8" && "$PREFIX/bin/tea" man --out "$PREFIX/man/man8/tea.8"'
+completions.tea.zsh.cmd = "tea completion zsh"
+completions.tea.bash.cmd = "tea completion bash"
+completions.tea.fish.cmd = "tea completion fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "tea"
+# not apt, whose tea is a text editor, nor dnf or yum, which lack it
+apk = "tea"
+
+[release]
+type = "command"
+cmd = '''
+curl -fsSL https://gitea.com/api/v1/repos/gitea/tea/releases/latest |
+  grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4
+'''
+
+[download]
+type = "url"
+url = "https://gitea.com/gitea/tea/releases/download/{{ tag }}/{{ asset }}"
+
+[assets]
+glibc_x64 = "tea-{{ version }}-linux-amd64"
+glibc_arm64 = "tea-{{ version }}-linux-arm64"
+musl_x64 = "tea-{{ version }}-linux-amd64"
+musl_arm64 = "tea-{{ version }}-linux-arm64"
+macos_arm64 = "tea-{{ version }}-darwin-arm64"
