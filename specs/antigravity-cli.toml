@@ -1,5 +1,7 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
 # the tag is the version and build of the release, as in its URL; the release command uses curl
+# there is no musl build, and the glibc one needs glibc 2.26
+min_glibc = "2.26"
 deps = ["curl"]
 bin = { agy = "antigravity" }
 
@@ -23,6 +25,4 @@ url = "https://storage.googleapis.com/antigravity-public/antigravity-cli/{{ tag 
 [assets]
 glibc_x64 = "linux-x64/cli_linux_x64.tar.gz"
 glibc_arm64 = "linux-arm/cli_linux_arm64.tar.gz"
-musl_x64 = "linux-x64/cli_linux_x64.tar.gz"
-musl_arm64 = "linux-arm/cli_linux_arm64.tar.gz"
 macos_arm64 = "darwin-arm/cli_mac_arm64.tar.gz"
