@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the terminfo entry of Ghostty for the hosts it connects to, which have it at most as ghostty, not
+# as the xterm-ghostty that Ghostty sets as TERM; ghostty-terminfo/ has it compiled for every ncurses
+# by `tic -x` of Debian from xterm-ghostty.terminfo, which `infocmp -x xterm-ghostty` of Ghostty
+# printed; the tag is the version of that Ghostty. Only Ghostty itself sets TERMINFO to its entry, so
+# macOS hosts need it as well, where ncurses names the dirs in hex (78 for x, 67 for g)
+# the trailing colon keeps the terminfo of the system
+env = { TERMINFO_DIRS = "{{ dir }}/terminfo:" }
+
+test = 'test -s "{{ dir }}/terminfo/x/xterm-ghostty" && test -s "{{ dir }}/terminfo/78/xterm-ghostty"'
+[external]
+# none, as no package manager has xterm-ghostty
+
+[release]
+type = "static"
+tag = "v1.3.2"
+
+[download]
+type = "command"
+cmd = '''
+cd "$PREFIX/dir" && mkdir -p terminfo/x terminfo/g terminfo/78 terminfo/67
+for dir in x 78; do cp "{{ spec_dir }}/ghostty-terminfo/x/xterm-ghostty" "terminfo/$dir/"; done
+for dir in g 67; do cp "{{ spec_dir }}/ghostty-terminfo/g/ghostty" "terminfo/$dir/"; done
+'''
