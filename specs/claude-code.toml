@@ -14,7 +14,7 @@ cmd = "curl -fsSL https://downloads.claude.ai/claude-code-releases/latest"
 
 [download]
 type = "url"
-cmd = "https://downloads.claude.ai/claude-code-releases/{{ version }}/{{ asset }}/claude.zstd"
+url = "https://downloads.claude.ai/claude-code-releases/{{ version }}/{{ asset }}/claude.zstd"
 
 [assets]
 glibc_x64 = "linux-x64"
