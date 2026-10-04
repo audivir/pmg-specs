@@ -7,6 +7,11 @@ post_install = '''
 cd "$CONTENT"
 export ARFLAGS=cr CC=cc LD=cc
 ./configure --disable-nls --disable-dependency-tracking --without-guile >/dev/null
+# zig 0.17 links glob and fnmatch from libSystem instead of from the libgnu.a of make, whose glob_t
+# differs, so that make crashes on every glob; macOS links all of libgnu.a
+if [ "$(uname)" = Darwin ]; then
+  sed -i.orig "s|^LDFLAGS='\(.*\)'|LDFLAGS='\1 -Wl,-force_load,lib/libgnu.a'|" build.cfg
+fi
 sh build.sh >/dev/null
 cp make "$PREFIX/bin/make"
 '''
