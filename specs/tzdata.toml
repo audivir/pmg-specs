@@ -1,18 +1,13 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
-# the zone files of the IANA time zone database for Linux hosts without tzdata, like most containers;
-# glibc and Python find them through TZDIR and PYTHONTZPATH, while musl ignores TZDIR and only reads
-# them as the path of a zone file in TZ
-platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
+# the zone files of the IANA time zone database, also where the system has them, so that every host
+# has the same ones; glibc and Python find them through TZDIR and PYTHONTZPATH, while musl ignores
+# TZDIR and only reads them as the path of a zone file in TZ
 content = "share/zoneinfo"
-check = { files = ["/usr/share/zoneinfo/zone1970.tab"] }
 env = { TZDIR = "{{ dir }}", PYTHONTZPATH = "{{ dir }}" }
 
 test = 'test -s "{{ dir }}/Europe/Berlin" && test -s "{{ dir }}/zone1970.tab"'
 [external]
-apt = "tzdata"
-apk = "tzdata"
-dnf = "tzdata"
-yum = "tzdata"
+# none, so that pmg installs it even where the system has tzdata
 
 [release]
 type = "conda"
@@ -27,3 +22,4 @@ glibc_x64 = "tzdata"
 glibc_arm64 = "tzdata"
 musl_x64 = "tzdata"
 musl_arm64 = "tzdata"
+macos_arm64 = "tzdata"
