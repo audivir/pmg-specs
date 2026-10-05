@@ -8,8 +8,8 @@ test = 'export SCREENDIR="$(mktemp -d)" && {{ cmd }} -dmS test && {{ cmd }} -S t
 brew = "screen"
 apt = "screen"
 apk = "screen"
-yum = "screen"
-# not dnf, as Rocky Linux has it only in EPEL
+# not dnf, as Rocky Linux has it only in EPEL, nor yum, as the screen 4.1 of CentOS 7 exits with 1
+# on --version, so pmg cannot detect it
 
 [release]
 type = "github"
