@@ -1,0 +1,26 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { screen = "bin/screen" }
+man = ["share/man/man1/screen.1"]
+
+# a short socket dir, as socket paths are limited to about 100 characters
+test = 'export SCREENDIR="$(mktemp -d)" && {{ cmd }} -dmS test && {{ cmd }} -S test -X quit'
+[external]
+brew = "screen"
+apt = "screen"
+apk = "screen"
+yum = "screen"
+# not dnf, as Rocky Linux has it only in EPEL
+
+[release]
+type = "github"
+repo = "audivir/screen-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "screen-static-linux-amd64.tar.gz"
+glibc_arm64 = "screen-static-linux-arm64.tar.gz"
+musl_x64 = "screen-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "screen-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "screen-static-macos-arm64.tar.gz"
