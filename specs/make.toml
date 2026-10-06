@@ -24,10 +24,14 @@ apk = "make"
 dnf = "make"
 yum = "make"
 
+# the kernel.org mirror of GNU, as ftp.gnu.org is often unreachable; without a connect timeout,
+# curl waits 75 seconds for it
 [release]
 type = "command"
 cmd = """
-curl -fsSL https://ftp.gnu.org/gnu/make/ |
+for mirror in https://mirrors.kernel.org/gnu https://ftp.gnu.org/gnu; do
+  curl -fsSL --connect-timeout 10 "$mirror/make/" && break
+done |
   grep -o 'make-[0-9.]*[.]tar.gz"' |
   sed 's/^make-//; s/[.]tar.gz"$//' |
   sort -t. -k1,1n -k2,2n -k3,3n |
@@ -36,7 +40,7 @@ curl -fsSL https://ftp.gnu.org/gnu/make/ |
 
 [download]
 type = "url"
-url = "https://ftp.gnu.org/gnu/make/{{ asset }}"
+url = "https://mirrors.kernel.org/gnu/make/{{ asset }}"
 
 [assets]
 glibc_x64 = "make-{{ version }}.tar.gz"

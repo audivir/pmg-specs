@@ -19,10 +19,14 @@ apk = "gawk"
 dnf = "gawk"
 yum = "gawk"
 
+# the kernel.org mirror of GNU, as ftp.gnu.org is often unreachable; without a connect timeout,
+# curl waits 75 seconds for it
 [release]
 type = "command"
 cmd = """
-curl -fsSL https://ftp.gnu.org/gnu/gawk/ |
+for mirror in https://mirrors.kernel.org/gnu https://ftp.gnu.org/gnu; do
+  curl -fsSL --connect-timeout 10 "$mirror/gawk/" && break
+done |
   grep -o 'gawk-[0-9.]*[.]tar.xz"' |
   sed 's/^gawk-//; s/[.]tar.xz"$//' |
   sort -t. -k1,1n -k2,2n -k3,3n |
@@ -31,7 +35,7 @@ curl -fsSL https://ftp.gnu.org/gnu/gawk/ |
 
 [download]
 type = "url"
-url = "https://ftp.gnu.org/gnu/gawk/{{ asset }}"
+url = "https://mirrors.kernel.org/gnu/gawk/{{ asset }}"
 
 [assets]
 glibc_x64 = "gawk-{{ version }}.tar.xz"
