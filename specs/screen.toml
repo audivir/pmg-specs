@@ -2,11 +2,11 @@
 bin = { screen = "bin/screen" }
 man = ["share/man/man1/screen.1"]
 
-# a short socket dir, as socket paths are limited to about 100 characters; quit is retried, as
-# -dm returns before the session accepts commands
+# a short socket dir, as socket paths are limited to about 100 characters; -Dm waits until the
+# session ends, but exits with 0 even if its command fails, so the command leaves a file
 test = '''
-export SCREENDIR="$(mktemp -d)" && {{ cmd }} -dmS test &&
-  for _ in 1 2 3 4 5 6 7 8 9 10; do {{ cmd }} -S test -X quit && exit 0; sleep 0.2; done; exit 1
+export SCREENDIR="$(mktemp -d)" &&
+  {{ cmd }} -DmS test sh -c 'touch "$SCREENDIR/ran"' && test -f "$SCREENDIR/ran"
 '''
 [external]
 brew = "screen"
