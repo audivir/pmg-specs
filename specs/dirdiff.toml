@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { dirdiff = "{{ asset }}" }
+completions.dirdiff.zsh.cmd = "dirdiff --gen-completions zsh"
+completions.dirdiff.bash.cmd = "dirdiff --gen-completions bash"
+completions.dirdiff.fish.cmd = "dirdiff --gen-completions fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "audivir/repo/dirdiff"
+# not apt, apk, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "audivir/dirdiff"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "dirdiff-linux-amd64"
+glibc_arm64 = "dirdiff-linux-arm64"
+musl_x64 = "dirdiff-linux-amd64"
+musl_arm64 = "dirdiff-linux-arm64"
+macos_arm64 = "dirdiff-darwin-arm64"
