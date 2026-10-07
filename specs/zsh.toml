@@ -1,34 +1,15 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
-# the static zsh of zsh-bin; its installer points the paths within zsh to where it lives, and
-# compiles its functions
+# zsh finds its functions relative to its binary, so the whole archive is the package dir; they
+# are compiled, which makes them load faster
 content = true
 links = { zsh = "{{ dir }}/bin/zsh" }
-man = ["man/man1/zsh.1", "man/man1/zshall.1"]
+man = ["share/man/man1/*.1"]
 post_install = '''
 cd "$PREFIX/dir"
-./share/zsh/5.8/scripts/relocate -d "{{ dir }}"
 ./bin/zsh -fc '
-  setopt extended_glob                                 || exit
-  zmodload -F zsh/files b:{zf_mv,zf_rm,zf_ln,zf_mkdir} || exit
-
-  for pat in "[^[:upper:]]" "[[:upper:]]"; do
-    for hex in ./share/terminfo/[[:xdigit:]][[:xdigit:]].zsh-bin(:t:r); do
-      printf -v char "\\x$hex"
-      [[ $char == $~pat ]] || continue
-      [[ -e ./share/terminfo/$hex ]] || zf_mkdir -- ./share/terminfo/$hex || exit
-      cp -- ./share/terminfo/$hex.zsh-bin/* ./share/terminfo/$hex/ || exit
-      if [[ $char != [[:upper:]] ||
-            ! ./share/terminfo/$char -ef ./share/terminfo/${(L)char} ]]; then
-        [[ -e ./share/terminfo/$char ]] ||
-          zf_ln -s -- $hex ./share/terminfo/$char 2>/dev/null ||
-          zf_mkdir -- ./share/terminfo/$char || exit
-        cp -- ./share/terminfo/$hex.zsh-bin/* ./share/terminfo/$char/ || exit
-      fi
-      zf_rm -rf -- ./share/terminfo/$hex.zsh-bin || exit
-    done
-  done
-
-  for file in ./share/zsh/5.8/functions/*~*.[^/]#(.); do
+  setopt extended_glob                 || exit
+  zmodload -F zsh/files b:{zf_mv,zf_rm} || exit
+  for file in ./share/zsh/*/functions/*~*.[^/]#(.); do
     tmp=$file.tmp.$$.zwc
     zf_rm -f -- $tmp $file.zwc || exit
     zcompile -R -- $tmp $file  || exit
@@ -46,14 +27,14 @@ yum = "zsh"
 
 [release]
 type = "github"
-repo = "romkatv/zsh-bin"
+repo = "audivir/zsh-static"
 
 [download]
 type = "github"
 
 [assets]
-glibc_x64 = "zsh-5.8-linux-x86_64.tar.gz"
-glibc_arm64 = "zsh-5.8-linux-aarch64.tar.gz"
-musl_x64 = "zsh-5.8-linux-x86_64.tar.gz"
-musl_arm64 = "zsh-5.8-linux-aarch64.tar.gz"
-macos_arm64 = "zsh-5.8-darwin-arm64.tar.gz"
+glibc_x64 = "zsh-static-linux-amd64.tar.gz"
+glibc_arm64 = "zsh-static-linux-arm64.tar.gz"
+musl_x64 = "zsh-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "zsh-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "zsh-static-macos-arm64.tar.gz"
