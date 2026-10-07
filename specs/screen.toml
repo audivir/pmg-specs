@@ -2,8 +2,12 @@
 bin = { screen = "bin/screen" }
 man = ["share/man/man1/screen.1"]
 
-# a short socket dir, as socket paths are limited to about 100 characters
-test = 'export SCREENDIR="$(mktemp -d)" && {{ cmd }} -dmS test && {{ cmd }} -S test -X quit'
+# a short socket dir, as socket paths are limited to about 100 characters; quit is retried, as
+# -dm returns before the session accepts commands
+test = '''
+export SCREENDIR="$(mktemp -d)" && {{ cmd }} -dmS test &&
+  for _ in 1 2 3 4 5 6 7 8 9 10; do {{ cmd }} -S test -X quit && exit 0; sleep 0.2; done; exit 1
+'''
 [external]
 brew = "screen"
 apt = "screen"
