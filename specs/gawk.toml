@@ -1,15 +1,6 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
-deps = ["curl", "cc", "make"]
-# zig ar lacks the u flag of the default ARFLAGS, configure wants a linker in LD, and it would try
-# gcc first, a stub on macOS without developer tools
-post_install = '''
-cd "$CONTENT"
-export ARFLAGS=cr CC=cc LD=cc
-./configure --disable-nls --disable-dependency-tracking --disable-pma --disable-extensions \
-  --without-readline --without-mpfr >/dev/null
-make -j4 >/dev/null
-cp gawk "$PREFIX/bin/gawk"
-'''
+bin = { gawk = "bin/gawk" }
+man = ["share/man/man1/gawk.1"]
 
 test = '''test "$({{ cmd }} 'BEGIN { print 1 + 1 }')" = 2'''
 [external]
@@ -19,27 +10,16 @@ apk = "gawk"
 dnf = "gawk"
 yum = "gawk"
 
-# the kernel.org mirror of GNU, as ftp.gnu.org is often unreachable; without a connect timeout,
-# curl waits 75 seconds for it
 [release]
-type = "command"
-cmd = """
-for mirror in https://mirrors.kernel.org/gnu https://ftp.gnu.org/gnu; do
-  curl -fsSL --connect-timeout 10 "$mirror/gawk/" && break
-done |
-  grep -o 'gawk-[0-9.]*[.]tar.xz"' |
-  sed 's/^gawk-//; s/[.]tar.xz"$//' |
-  sort -t. -k1,1n -k2,2n -k3,3n |
-  tail -n 1
-"""
+type = "github"
+repo = "audivir/gawk-static"
 
 [download]
-type = "url"
-url = "https://mirrors.kernel.org/gnu/gawk/{{ asset }}"
+type = "github"
 
 [assets]
-glibc_x64 = "gawk-{{ version }}.tar.xz"
-glibc_arm64 = "gawk-{{ version }}.tar.xz"
-musl_x64 = "gawk-{{ version }}.tar.xz"
-musl_arm64 = "gawk-{{ version }}.tar.xz"
-macos_arm64 = "gawk-{{ version }}.tar.xz"
+glibc_x64 = "gawk-static-linux-amd64.tar.gz"
+glibc_arm64 = "gawk-static-linux-arm64.tar.gz"
+musl_x64 = "gawk-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "gawk-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "gawk-static-macos-arm64.tar.gz"
