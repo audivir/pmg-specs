@@ -18,8 +18,8 @@ for cmd in git git-receive-pack git-upload-archive git-upload-pack; do
 done
 '''
 man = ["share/man/man1/*.1", "share/man/man5/*.5", "share/man/man7/*.7"]
-# the zsh completion loads the bash one, which it finds where pmg links it
-completions.git = { bash = "share/bash-completion/completions/git", zsh = "share/zsh/site-functions/_git" }
+# not the zsh completion of git, a wrapper of the bash one, as zsh ships a better one
+completions.git = { bash = "share/bash-completion/completions/git" }
 check = { dev_tool = true }
 
 test = '{{ cmd }} init -q repo && {{ cmd }} -C repo status'
