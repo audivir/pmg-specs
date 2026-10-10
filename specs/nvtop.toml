@@ -1,0 +1,26 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# NVIDIA GPUs on Linux and Apple GPUs on macOS; the build has no musl variant, as nvtop loads the
+# library of the NVIDIA driver at runtime, and no backends that need libdrm
+platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
+bin = { nvtop = "bin/nvtop" }
+man = ["share/man/man1/nvtop.1"]
+
+test = "{{ cmd }} --version"
+[external]
+brew = "nvtop"
+apt = "nvtop"
+apk = "nvtop"
+dnf = "nvtop"
+# not yum, as neither CentOS 7 nor EPEL 7 has it
+
+[release]
+type = "github"
+repo = "audivir/nvtop-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "nvtop-static-linux-amd64.tar.gz"
+glibc_arm64 = "nvtop-static-linux-arm64.tar.gz"
+macos_arm64 = "nvtop-static-macos-arm64.tar.gz"
