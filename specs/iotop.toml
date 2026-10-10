@@ -1,0 +1,27 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# iotop-c, which reads the taskstats interface of the Linux kernel, so there is no macOS build; the
+# builds of iotop-static run on glibc 2.17 or newer and, on musl, are fully static
+platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
+bin = { iotop = "bin/iotop" }
+man = ["share/man/man8/iotop.8"]
+
+test = "{{ cmd }} --version"
+[external]
+# not brew, as macOS has no iotop
+apt = "iotop"
+apk = "iotop"
+dnf = "iotop"
+yum = "iotop"
+
+[release]
+type = "github"
+repo = "audivir/iotop-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "iotop-static-linux-amd64.tar.gz"
+glibc_arm64 = "iotop-static-linux-arm64.tar.gz"
+musl_x64 = "iotop-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "iotop-static-linux-musl-arm64.tar.gz"
