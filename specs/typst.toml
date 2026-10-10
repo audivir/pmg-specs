@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { typst = "typst" }
+completions.typst.zsh.cmd = "typst completions zsh"
+completions.typst.bash.cmd = "typst completions bash"
+completions.typst.fish.cmd = "typst completions fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "typst"
+apk = "typst"
+# not apt, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "typst/typst"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "typst-x86_64-unknown-linux-musl.tar.xz"
+glibc_arm64 = "typst-aarch64-unknown-linux-musl.tar.xz"
+musl_x64 = "typst-x86_64-unknown-linux-musl.tar.xz"
+musl_arm64 = "typst-aarch64-unknown-linux-musl.tar.xz"
+macos_arm64 = "typst-aarch64-apple-darwin.tar.xz"
