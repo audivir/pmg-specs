@@ -1,0 +1,28 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# statically linked, so the same build runs on glibc and musl hosts; there is none for macOS, where
+# gdb needs a code signature anyway; the archive also has the tools of binutils, which the system
+# has already
+platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
+bin = { gdb = "gdb", gdbserver = "gdbserver", gcore = "gcore" }
+
+# the full build has Python for scripts and pretty printers
+test = '''{{ cmd }} --version && {{ cmd }} -batch -nx -ex 'python print("pmg")' | grep -q pmg'''
+[external]
+brew = "gdb"
+apt = "gdb"
+apk = "gdb"
+dnf = "gdb"
+yum = "gdb"
+
+[release]
+type = "github"
+repo = "guyush1/gdb-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "gdb-static-full-x86_64.tar.gz"
+glibc_arm64 = "gdb-static-full-aarch64.tar.gz"
+musl_x64 = "gdb-static-full-x86_64.tar.gz"
+musl_arm64 = "gdb-static-full-aarch64.tar.gz"
