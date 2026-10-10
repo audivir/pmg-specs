@@ -1,0 +1,30 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { nano = "bin/nano" }
+links = { rnano = "{{ dir }}/bin/nano" }
+man = [
+  "share/man/man1/nano.1",
+  "share/man/man1/rnano.1",
+  "share/man/man5/nanorc.5",
+]
+
+test = "{{ cmd }} --version"
+[external]
+brew = "nano"
+apt = "nano"
+apk = "nano"
+dnf = "nano"
+yum = "nano"
+
+[release]
+type = "github"
+repo = "audivir/nano-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "nano-static-linux-amd64.tar.gz"
+glibc_arm64 = "nano-static-linux-arm64.tar.gz"
+musl_x64 = "nano-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "nano-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "nano-static-macos-arm64.tar.gz"
