@@ -1,0 +1,45 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the builds of Kitware are for glibc, so musl hosts and glibc hosts older than 2.28 skip the spec
+min_glibc = "2.28"
+platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
+# cmake finds its modules at ../share/cmake-X.Y from its real path, so the archive is the package
+# dir and bin links into it; macOS has everything in CMake.app/Contents
+content = true
+links.cmake = "{{ dir }}/bin/cmake"
+links.ctest = "{{ dir }}/bin/ctest"
+links.cpack = "{{ dir }}/bin/cpack"
+links.ccmake = "{{ dir }}/bin/ccmake"
+post_install = '''
+if [ -d "$CONTENT/CMake.app" ]; then
+  for dir in bin share; do
+    ln -s "CMake.app/Contents/$dir" "$CONTENT/$dir"
+  done
+fi
+'''
+
+# including a module needs the modules, which the command finds relative to its real path; script
+# mode, as configuring a project would need a build tool
+test = '''
+{{ cmd }} --version &&
+  file="$(mktemp)" &&
+  echo 'include(CMakePrintHelpers)' > "$file" &&
+  {{ cmd }} -P "$file"
+'''
+[external]
+brew = "cmake"
+apt = "cmake"
+apk = "cmake"
+dnf = "cmake"
+# not yum, as the cmake 2.8 of CentOS 7 is too old for most projects
+
+[release]
+type = "github"
+repo = "Kitware/CMake"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "cmake-{{ version }}-linux-x86_64.tar.gz"
+glibc_arm64 = "cmake-{{ version }}-linux-aarch64.tar.gz"
+macos_arm64 = "cmake-{{ version }}-macos-universal.tar.gz"
