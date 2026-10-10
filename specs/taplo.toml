@@ -1,0 +1,28 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the assets are gzipped binaries, which are statically linked
+post_install = '''
+gunzip -c "$CONTENT"/taplo-*.gz > "$PREFIX/bin/taplo"
+chmod +x "$PREFIX/bin/taplo"
+'''
+completions.taplo.zsh.cmd = "taplo completions zsh"
+completions.taplo.bash.cmd = "taplo completions bash"
+completions.taplo.fish.cmd = "taplo completions fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "taplo"
+# not apt, apk, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "tamasfe/taplo"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "taplo-linux-x86_64.gz"
+glibc_arm64 = "taplo-linux-aarch64.gz"
+musl_x64 = "taplo-linux-x86_64.gz"
+musl_arm64 = "taplo-linux-aarch64.gz"
+macos_arm64 = "taplo-darwin-aarch64.gz"
