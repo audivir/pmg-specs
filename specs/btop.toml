@@ -1,0 +1,32 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the static musl build, so that the same build runs on glibc and musl hosts; there is none for macOS
+platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
+# btop finds its themes at ../share/btop/themes from its real path, so the archive is the package
+# dir and bin links into it
+content = true
+links.btop = "{{ dir }}/bin/btop"
+post_install = '''
+mkdir -p "$CONTENT/share/btop"
+mv "$CONTENT/themes" "$CONTENT/share/btop/themes"
+'''
+
+test = '{{ cmd }} --version && test -s "{{ dir }}/share/btop/themes/dracula.theme"'
+[external]
+brew = "btop"
+apt = "btop"
+apk = "btop"
+dnf = "btop"
+# not yum, as neither CentOS 7 nor EPEL 7 has it
+
+[release]
+type = "github"
+repo = "aristocratos/btop"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "btop-x86_64-unknown-linux-musl.tar.gz"
+glibc_arm64 = "btop-aarch64-unknown-linux-musl.tar.gz"
+musl_x64 = "btop-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "btop-aarch64-unknown-linux-musl.tar.gz"
