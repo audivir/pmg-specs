@@ -1,0 +1,22 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { viddy = "viddy" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "viddy"
+apk = "viddy"
+# not apt, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "sachaos/viddy"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "viddy-{{ tag }}-linux-x86_64.tar.gz"
+glibc_arm64 = "viddy-{{ tag }}-linux-arm64.tar.gz"
+musl_x64 = "viddy-{{ tag }}-linux-x86_64.tar.gz"
+musl_arm64 = "viddy-{{ tag }}-linux-arm64.tar.gz"
+macos_arm64 = "viddy-{{ tag }}-macos-arm64.tar.gz"
