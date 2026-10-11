@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 bin = { dirdiff = "{{ asset }}" }
 completions.dirdiff.zsh.cmd = "dirdiff --gen-completions zsh"
 completions.dirdiff.bash.cmd = "dirdiff --gen-completions bash"

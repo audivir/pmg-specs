@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the tag is the version and build of the release, as in its URL; the release command uses curl
 # there is no musl build, and the glibc one needs glibc 2.26, so musl and older glibc hosts run it
 # with the glibc of pmg

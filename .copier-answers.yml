@@ -2,7 +2,7 @@
 _commit: e730ed7
 _src_path: gh:audivir/copier-template
 description: Package specs for pmg.
-github_org: audivir
+github_org: zshsetup
 project_name: pmg-specs
 project_slug: pmg_specs
 project_type: shell

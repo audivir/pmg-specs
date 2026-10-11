@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # min_glibc = "2.26"
 # the release and download commands use curl, and the binary is zstd-compressed
 deps = ["curl", "zstd"]

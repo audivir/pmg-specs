@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the assets are gzipped binaries, which are statically linked
 post_install = '''
 gunzip -c "$CONTENT"/taplo-*.gz > "$PREFIX/bin/taplo"

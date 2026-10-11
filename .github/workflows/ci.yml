@@ -18,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v10.0.1
-      - run: uvx --from https://github.com/audivir/pmg/archive/main.tar.gz pmg validate specs/*.toml
+      - run: uvx --from https://github.com/zshsetup/pmg/archive/main.tar.gz pmg validate specs/*.toml
       - run: uvx --from taplo taplo check specs/*.toml
   changes:
     # the specs changed by the push or pull request, all of them if the install CI changed or on

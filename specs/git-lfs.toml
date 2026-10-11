@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # a Go program without dynamic libraries; git runs it as `git lfs` from PATH, whatever git it is
 deps = ["git"]
 bin = { git-lfs = "git-lfs" }

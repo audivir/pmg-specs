@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the static musl build, so that the same build runs on glibc and musl hosts; there is none for macOS
 platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
 # btop finds its themes at ../share/btop/themes from its real path, so the archive is the package

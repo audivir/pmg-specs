@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the bw CLI, released with the other clients of Bitwarden in one repo under tags like cli-v2026.9.1
 # the build of Bitwarden is for glibc 2.29 or newer, and has none for musl
 min_glibc = "2.29"

@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 bin = { zellij = "zellij" }
 completions.zellij.zsh.cmd = "zellij setup --generate-completion zsh"
 completions.zellij.bash.cmd = "zellij setup --generate-completion bash"

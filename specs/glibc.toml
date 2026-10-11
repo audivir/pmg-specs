@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # user-space glibc for musl hosts, from the sysroot conda-forge builds against; glibc programs need
 # `patchelf --set-interpreter {{ dir }}/loader`; older glibc hosts count as musl hosts, so that it
 # also serves the musl assets they get through min_glibc

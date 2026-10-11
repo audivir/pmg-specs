@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 bin = { hyperfine = "hyperfine" }
 man = ["hyperfine.1"]
 completions.hyperfine.zsh = "autocomplete/_hyperfine"

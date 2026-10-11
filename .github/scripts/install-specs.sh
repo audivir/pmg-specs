@@ -55,7 +55,7 @@ case $manager in
 esac
 
 uv tool install --quiet --python 3.13 \
-  --from "${PMG_SOURCE:-https://github.com/audivir/pmg/archive/main.tar.gz}" pmg
+  --from "${PMG_SOURCE:-https://github.com/zshsetup/pmg/archive/main.tar.gz}" pmg
 pmg="$work/bin/pmg"
 
 # the specs for the host, by the rules of pmg itself

@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the builds of Kitware are for glibc, so musl hosts and glibc hosts older than 2.28 skip the spec
 min_glibc = "2.28"
 platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]

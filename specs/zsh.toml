@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # zsh finds its functions relative to its binary, so the whole archive is the package dir; they
 # are compiled, which makes them load faster
 content = true
@@ -27,7 +27,7 @@ yum = "zsh"
 
 [release]
 type = "github"
-repo = "audivir/zsh-static"
+repo = "zshsetup/zsh-static"
 
 [download]
 type = "github"

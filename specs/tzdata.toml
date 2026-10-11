@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the zone files of the IANA time zone database, also where the system has them, so that every host
 # has the same ones; glibc and Python find them through TZDIR and PYTHONTZPATH, while musl ignores
 # TZDIR and only reads them as the path of a zone file in TZ

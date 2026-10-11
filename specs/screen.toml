@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 bin = { screen = "bin/screen" }
 man = ["share/man/man1/screen.1"]
 
@@ -17,7 +17,7 @@ apk = "screen"
 
 [release]
 type = "github"
-repo = "audivir/screen-static"
+repo = "zshsetup/screen-static"
 
 [download]
 type = "github"

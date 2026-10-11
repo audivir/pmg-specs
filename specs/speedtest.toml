@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the speedtest CLI of Ookla, statically linked, which has no releases to query; the tag is the
 # version of its download page. The first run asks to accept the license, or takes
 # --accept-license.

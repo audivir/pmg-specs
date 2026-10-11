@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the release has no musl build for arm64, and its glibc build of arm64 needs glibc 2.34; x64 is
 # statically linked
 min_glibc = "2.34"

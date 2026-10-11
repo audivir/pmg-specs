@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 bin = { nano = "bin/nano" }
 links = { rnano = "{{ dir }}/bin/nano" }
 man = [
@@ -17,7 +17,7 @@ yum = "nano"
 
 [release]
 type = "github"
-repo = "audivir/nano-static"
+repo = "zshsetup/nano-static"
 
 [download]
 type = "github"

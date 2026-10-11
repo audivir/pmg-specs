@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the terminfo entry of Ghostty for the hosts it connects to, which have it at most as ghostty, not
 # as the xterm-ghostty that Ghostty sets as TERM; ghostty-terminfo/ has it compiled for every ncurses
 # by `tic -x` of Debian from xterm-ghostty.terminfo, which `infocmp -x xterm-ghostty` of Ghostty

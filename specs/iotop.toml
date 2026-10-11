@@ -1,4 +1,4 @@
-#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # iotop-c, which reads the taskstats interface of the Linux kernel, so there is no macOS build; the
 # builds of iotop-static run on glibc 2.17 or newer and, on musl, are fully static
 platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
@@ -15,7 +15,7 @@ yum = "iotop"
 
 [release]
 type = "github"
-repo = "audivir/iotop-static"
+repo = "zshsetup/iotop-static"
 
 [download]
 type = "github"
