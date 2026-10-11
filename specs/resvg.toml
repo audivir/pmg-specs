@@ -1,0 +1,21 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the release has builds for Linux on x64 and for macOS only
+platforms = ["glibc_x64", "macos_arm64"]
+bin = { resvg = "resvg" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "resvg"
+apk = "resvg"
+# not apt, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "linebender/resvg"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "resvg-linux-x86_64.tar.gz"
+macos_arm64 = "resvg-macos-aarch64.zip"
