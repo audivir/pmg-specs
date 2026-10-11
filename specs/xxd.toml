@@ -1,0 +1,27 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the xxd of the vim-static archive, for hosts that want the hex dumper without vim
+bin = { xxd = "bin/xxd" }
+man = ["share/man/man1/xxd.1"]
+remove = ["share/vim", "bin/vim"]
+
+test = 'test "$(printf pmg | {{ cmd }} -p)" = 706d67 && test "$(printf 706d67 | {{ cmd }} -r -p)" = pmg'
+[external]
+brew = "xxd"
+apt = "xxd"
+apk = "xxd"
+dnf = "vim-common"
+yum = "vim-common"
+
+[release]
+type = "github"
+repo = "zshsetup/vim-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "vim-static-linux-amd64.tar.gz"
+glibc_arm64 = "vim-static-linux-arm64.tar.gz"
+musl_x64 = "vim-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "vim-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "vim-static-macos-arm64.tar.gz"
