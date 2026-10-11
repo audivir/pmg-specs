@@ -7,7 +7,7 @@ min_glibc = "2.39"
 deps = ["patchelf"]
 content = "*-conda-linux-gnu/sysroot"
 # only the shared libraries are needed at runtime; glibc reads locales and gconv modules from the
-# host's /usr/lib/locale and /usr/lib64/gconv, not from here
+# /usr/lib/locale and /usr/lib64/gconv of the host, not from here
 remove = [
   "lib64/locale",
   "lib64/gconv",

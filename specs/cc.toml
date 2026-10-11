@@ -21,8 +21,8 @@ tag = "1"
 
 [download]
 type = "command"
-# zig links against its newest glibc unless told the host's, and rejects a flag that rustc passes
-# on aarch64
+# zig links against its newest glibc unless told the glibc of the host, and rejects a flag that
+# rustc passes on aarch64
 cmd = '''
 if [ "$(uname)" != Linux ]; then
   target=""

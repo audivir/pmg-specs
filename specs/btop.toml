@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
-# the static musl builds of btop on Linux, which run on glibc and musl hosts alike, and the build of
-# btop-static on macOS, which btop does not release; the version is the latest release of btop-static,
-# which follows btop
+# the static musl builds of btop on Linux, which run on glibc and musl hosts alike, and the build
+# of btop-static on macOS, which btop does not release; the version is the latest release of
+# btop-static, which follows btop
 platforms = [
   "glibc_x64",
   "glibc_arm64",
