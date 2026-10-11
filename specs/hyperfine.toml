@@ -1,0 +1,28 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+bin = { hyperfine = "hyperfine" }
+man = ["hyperfine.1"]
+completions.hyperfine.zsh = "autocomplete/_hyperfine"
+completions.hyperfine.bash = "autocomplete/hyperfine.bash"
+completions.hyperfine.fish = "autocomplete/hyperfine.fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "hyperfine"
+apt = "hyperfine"
+apk = "hyperfine"
+dnf = "hyperfine"
+# not yum, as neither CentOS 7 nor EPEL 7 has it
+
+[release]
+type = "github"
+repo = "sharkdp/hyperfine"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "hyperfine-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+glibc_arm64 = "hyperfine-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
+musl_x64 = "hyperfine-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "hyperfine-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
+macos_arm64 = "hyperfine-{{ tag }}-aarch64-apple-darwin.tar.gz"
