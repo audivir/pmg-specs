@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+bin = { pv = "bin/pv" }
+man = ["share/man/man1/pv.1"]
+
+test = 'test "$(echo pmg | {{ cmd }} -q)" = pmg'
+[external]
+brew = "pv"
+apt = "pv"
+apk = "pv"
+dnf = "pv"
+yum = "pv"
+
+[release]
+type = "github"
+repo = "zshsetup/pv-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "pv-static-linux-amd64.tar.gz"
+glibc_arm64 = "pv-static-linux-arm64.tar.gz"
+musl_x64 = "pv-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "pv-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "pv-static-macos-arm64.tar.gz"
