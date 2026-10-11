@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+bin = { tmux = "bin/tmux" }
+man = ["share/man/man1/tmux.1"]
+
+test = "{{ cmd }} -V"
+[external]
+brew = "tmux"
+apt = "tmux"
+apk = "tmux"
+dnf = "tmux"
+yum = "tmux"
+
+[release]
+type = "github"
+repo = "zshsetup/tmux-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "tmux-static-linux-amd64.tar.gz"
+glibc_arm64 = "tmux-static-linux-arm64.tar.gz"
+musl_x64 = "tmux-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "tmux-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "tmux-static-macos-arm64.tar.gz"
