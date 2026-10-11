@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+bin = { pigz = "bin/pigz", unpigz = "bin/unpigz" }
+man = ["share/man/man1/pigz.1"]
+
+test = 'test "$(echo pmg | {{ cmd }} | {{ cmd }} -d)" = pmg'
+[external]
+brew = "pigz"
+apt = "pigz"
+apk = "pigz"
+dnf = "pigz"
+yum = "pigz"
+
+[release]
+type = "github"
+repo = "zshsetup/pigz-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "pigz-static-linux-amd64.tar.gz"
+glibc_arm64 = "pigz-static-linux-arm64.tar.gz"
+musl_x64 = "pigz-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "pigz-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "pigz-static-macos-arm64.tar.gz"
