@@ -1,10 +1,6 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
-deps = ["cc", "git"]
-man = ["aha.1"]
-# a single C file
-post_install = '''
-cc -std=c99 -O2 "$CONTENT/aha.c" -o "$PREFIX/bin/aha"
-'''
+bin = { aha = "bin/aha" }
+man = ["share/man/man1/aha.1"]
 
 test = 'test "$(echo pmg | {{ cmd }} --no-header)" = "pmg"'
 [external]
@@ -14,24 +10,16 @@ apk = "aha"
 dnf = "aha"
 # not yum, as neither CentOS 7 nor EPEL 7 has it
 
-# the repo has tags, but no releases
 [release]
-type = "command"
-cmd = '''
-git ls-remote --tags --refs https://github.com/theZiz/aha |
-  sed 's|.*refs/tags/||' |
-  grep -E '^[0-9]+([.][0-9]+)*$' |
-  sort -t. -k1,1n -k2,2n -k3,3n |
-  tail -n 1
-'''
+type = "github"
+repo = "audivir/aha-static"
 
 [download]
-type = "url"
-url = "https://github.com/theZiz/aha/archive/refs/tags/{{ tag }}.tar.gz"
+type = "github"
 
 [assets]
-glibc_x64 = "aha-{{ tag }}.tar.gz"
-glibc_arm64 = "aha-{{ tag }}.tar.gz"
-musl_x64 = "aha-{{ tag }}.tar.gz"
-musl_arm64 = "aha-{{ tag }}.tar.gz"
-macos_arm64 = "aha-{{ tag }}.tar.gz"
+glibc_x64 = "aha-static-linux-amd64.tar.gz"
+glibc_arm64 = "aha-static-linux-arm64.tar.gz"
+musl_x64 = "aha-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "aha-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "aha-static-macos-arm64.tar.gz"
