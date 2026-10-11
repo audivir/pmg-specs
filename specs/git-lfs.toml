@@ -1,0 +1,30 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# a Go program without dynamic libraries; git runs it as `git lfs` from PATH, whatever git it is
+deps = ["git"]
+bin = { git-lfs = "git-lfs" }
+man = ["man/man1/*.1", "man/man5/*.5", "man/man7/*.7"]
+completions.git-lfs.zsh.cmd = "git-lfs completion zsh"
+completions.git-lfs.bash.cmd = "git-lfs completion bash"
+completions.git-lfs.fish.cmd = "git-lfs completion fish"
+
+test = '{{ cmd }} version'
+[external]
+brew = "git-lfs"
+apt = "git-lfs"
+apk = "git-lfs"
+dnf = "git-lfs"
+yum = "git-lfs"
+
+[release]
+type = "github"
+repo = "git-lfs/git-lfs"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "git-lfs-linux-amd64-{{ tag }}.tar.gz"
+glibc_arm64 = "git-lfs-linux-arm64-{{ tag }}.tar.gz"
+musl_x64 = "git-lfs-linux-amd64-{{ tag }}.tar.gz"
+musl_arm64 = "git-lfs-linux-arm64-{{ tag }}.tar.gz"
+macos_arm64 = "git-lfs-darwin-arm64-{{ tag }}.zip"
