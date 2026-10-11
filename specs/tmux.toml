@@ -2,6 +2,7 @@
 bin = { tmux = "bin/tmux" }
 man = ["share/man/man1/tmux.1"]
 
+check = { args = ["-V"] }
 test = "{{ cmd }} -V"
 [external]
 brew = "tmux"
