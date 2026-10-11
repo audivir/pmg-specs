@@ -1,0 +1,48 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the archive is the package dir, as vim finds its runtime files through $VIM; the commands that
+# vim runs differently by their name link to it
+content = true
+links.vim = "{{ dir }}/bin/vim"
+links.vi = "{{ dir }}/bin/vim"
+links.view = "{{ dir }}/bin/vim"
+links.ex = "{{ dir }}/bin/vim"
+links.vimdiff = "{{ dir }}/bin/vim"
+links.rvim = "{{ dir }}/bin/vim"
+links.rview = "{{ dir }}/bin/vim"
+# the xxd of the archive is the xxd package, which vim does not need
+remove = ["bin/xxd"]
+man = [
+  "share/man/man1/vim.1",
+  "share/man/man1/vimdiff.1",
+  "share/man/man1/vimtutor.1",
+]
+env = { VIM = "{{ dir }}/share/vim" }
+
+# the version output is read whole, as grep -q would end the pipe early; the runtime path is the
+# one vim finds with $VIM set by the spec
+test = '''
+out="$({{ cmd }} --version)" && echo "$out" | grep -q 'Vi IMproved' &&
+  file="$(mktemp)" &&
+  {{ cmd }} -u NONE -es -c 'redir! > '"$file"' | echo $VIMRUNTIME | redir END | qa!' </dev/null &&
+  test -f "$(tr -d '[:space:]' < "$file")/syntax/syntax.vim"
+'''
+[external]
+brew = "vim"
+apt = "vim"
+apk = "vim"
+dnf = "vim-enhanced"
+yum = "vim-enhanced"
+
+[release]
+type = "github"
+repo = "zshsetup/vim-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "vim-static-linux-amd64.tar.gz"
+glibc_arm64 = "vim-static-linux-arm64.tar.gz"
+musl_x64 = "vim-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "vim-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "vim-static-macos-arm64.tar.gz"
