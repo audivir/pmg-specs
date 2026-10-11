@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+bin = { sqlite3 = "bin/sqlite3" }
+man = ["share/man/man1/sqlite3.1"]
+
+test = '''test "$(echo 'select 6 * 7;' | {{ cmd }})" = 42'''
+[external]
+brew = "sqlite"
+apt = "sqlite3"
+apk = "sqlite"
+dnf = "sqlite"
+yum = "sqlite"
+
+[release]
+type = "github"
+repo = "zshsetup/sqlite3-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "sqlite3-static-linux-amd64.tar.gz"
+glibc_arm64 = "sqlite3-static-linux-arm64.tar.gz"
+musl_x64 = "sqlite3-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "sqlite3-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "sqlite3-static-macos-arm64.tar.gz"
