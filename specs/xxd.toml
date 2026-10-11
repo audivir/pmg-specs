@@ -6,7 +6,7 @@ remove = ["share/vim", "bin/vim"]
 
 test = 'test "$(printf pmg | {{ cmd }} -p)" = 706d67 && test "$(printf 706d67 | {{ cmd }} -r -p)" = pmg'
 [external]
-brew = "xxd"
+# not brew, which has no formula for it (macOS ships it with vim)
 apt = "xxd"
 apk = "xxd"
 dnf = "vim-common"
