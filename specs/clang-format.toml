@@ -1,0 +1,27 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the static builds of cpp-linter, whose assets name the major version of LLVM; a newer one needs
+# a new spec
+bin = { clang-format = "{{ asset }}" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "clang-format"
+apt = "clang-format"
+apk = "clang-extra-tools"
+dnf = "clang-tools-extra"
+# not yum, as CentOS 7 has only the clang-format 3.4 in its clang
+
+[release]
+type = "static"
+tag = "23"
+
+[download]
+type = "url"
+url = "https://github.com/cpp-linter/clang-tools-static-binaries/releases/latest/download/{{ asset }}"
+
+[assets]
+glibc_x64 = "clang-format-{{ version }}_linux-amd64"
+glibc_arm64 = "clang-format-{{ version }}_linux-arm64"
+musl_x64 = "clang-format-{{ version }}_linux-amd64"
+musl_arm64 = "clang-format-{{ version }}_linux-arm64"
+macos_arm64 = "clang-format-{{ version }}_macos-arm64"
