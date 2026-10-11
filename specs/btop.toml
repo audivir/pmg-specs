@@ -1,13 +1,24 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
-# the static musl build, so that the same build runs on glibc and musl hosts; there is none for macOS
-platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
+# the static musl builds of btop on Linux, which run on glibc and musl hosts alike, and the build of
+# btop-static on macOS, which btop does not release; the version is the latest release of btop-static,
+# which follows btop
+platforms = [
+  "glibc_x64",
+  "glibc_arm64",
+  "musl_x64",
+  "musl_arm64",
+  "macos_arm64",
+]
 # btop finds its themes at ../share/btop/themes from its real path, so the archive is the package
 # dir and bin links into it
 content = true
 links.btop = "{{ dir }}/bin/btop"
+# the archives of btop have the themes next to bin, the one of btop-static has them in share/btop
 post_install = '''
-mkdir -p "$CONTENT/share/btop"
-mv "$CONTENT/themes" "$CONTENT/share/btop/themes"
+if [ -d "$CONTENT/themes" ]; then
+  mkdir -p "$CONTENT/share/btop"
+  mv "$CONTENT/themes" "$CONTENT/share/btop/themes"
+fi
 '''
 
 test = '{{ cmd }} --version && test -s "{{ dir }}/share/btop/themes/dracula.theme"'
@@ -20,13 +31,15 @@ dnf = "btop"
 
 [release]
 type = "github"
-repo = "aristocratos/btop"
+repo = "zshsetup/btop-static"
 
 [download]
-type = "github"
+type = "url"
+url = "{{ asset }}"
 
 [assets]
-glibc_x64 = "btop-x86_64-unknown-linux-musl.tar.gz"
-glibc_arm64 = "btop-aarch64-unknown-linux-musl.tar.gz"
-musl_x64 = "btop-x86_64-unknown-linux-musl.tar.gz"
-musl_arm64 = "btop-aarch64-unknown-linux-musl.tar.gz"
+glibc_x64 = "https://github.com/aristocratos/btop/releases/download/{{ tag }}/btop-x86_64-unknown-linux-musl.tar.gz"
+glibc_arm64 = "https://github.com/aristocratos/btop/releases/download/{{ tag }}/btop-aarch64-unknown-linux-musl.tar.gz"
+musl_x64 = "https://github.com/aristocratos/btop/releases/download/{{ tag }}/btop-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "https://github.com/aristocratos/btop/releases/download/{{ tag }}/btop-aarch64-unknown-linux-musl.tar.gz"
+macos_arm64 = "https://github.com/zshsetup/btop-static/releases/download/{{ tag }}/btop-static-macos-arm64.tar.gz"
