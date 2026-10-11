@@ -1,0 +1,26 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the speedtest CLI of Ookla, statically linked, which has no releases to query; the tag is the
+# version of its download page. The first run asks to accept the license, or takes
+# --accept-license.
+bin = { speedtest = "speedtest" }
+man = ["speedtest.5"]
+
+test = "{{ cmd }} --version"
+[external]
+brew = "teamookla/speedtest/speedtest"
+# not apt, apk, dnf, or yum, which have it only from the repos of Ookla
+
+[release]
+type = "static"
+tag = "1.2.0"
+
+[download]
+type = "url"
+url = "https://install.speedtest.net/app/cli/{{ asset }}"
+
+[assets]
+glibc_x64 = "ookla-speedtest-{{ version }}-linux-x86_64.tgz"
+glibc_arm64 = "ookla-speedtest-{{ version }}-linux-aarch64.tgz"
+musl_x64 = "ookla-speedtest-{{ version }}-linux-x86_64.tgz"
+musl_arm64 = "ookla-speedtest-{{ version }}-linux-aarch64.tgz"
+macos_arm64 = "ookla-speedtest-{{ version }}-macosx-universal.tgz"
