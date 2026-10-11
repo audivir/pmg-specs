@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+bin = { tree = "bin/tree" }
+man = ["share/man/man1/tree.1"]
+
+test = "{{ cmd }} --version"
+[external]
+brew = "tree"
+apt = "tree"
+apk = "tree"
+dnf = "tree"
+yum = "tree"
+
+[release]
+type = "github"
+repo = "zshsetup/tree-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "tree-static-linux-amd64.tar.gz"
+glibc_arm64 = "tree-static-linux-arm64.tar.gz"
+musl_x64 = "tree-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "tree-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "tree-static-macos-arm64.tar.gz"
