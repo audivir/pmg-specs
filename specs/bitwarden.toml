@@ -1,0 +1,31 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# the bw CLI, released with the other clients of Bitwarden in one repo under tags like cli-v2026.9.1
+# the build of Bitwarden is for glibc 2.29 or newer, and has none for musl
+min_glibc = "2.29"
+platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
+deps = ["curl", "jq"]
+bin = { bw = "bw" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "bitwarden-cli"
+# not apt, apk, dnf, or yum, which lack it
+
+# the newest cli- release among the latest ones of the repo, with the v of the tag only
+[release]
+type = "command"
+cmd = '''
+token="${PMG_GH_TOKEN:-${GH_TOKEN:-}}"
+curl -fsSL ${token:+-H "Authorization: Bearer $token"} \
+  "https://api.github.com/repos/bitwarden/clients/releases?per_page=100" |
+  jq -r '[.[] | select(.tag_name | startswith("cli-v")) | .tag_name][0] | sub("^cli-"; "")'
+'''
+
+[download]
+type = "url"
+url = "https://github.com/bitwarden/clients/releases/download/cli-{{ tag }}/{{ asset }}"
+
+[assets]
+glibc_x64 = "bw-linux-{{ version }}.zip"
+glibc_arm64 = "bw-linux-arm64-{{ version }}.zip"
+macos_arm64 = "bw-macos-arm64-{{ version }}.zip"
