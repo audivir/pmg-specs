@@ -1,5 +1,6 @@
 #:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
-# the release has builds for Linux on x64 and for macOS only
+# the release has builds for Linux on x64, which needs glibc 2.35, and for macOS only
+min_glibc = "2.35"
 platforms = ["glibc_x64", "macos_arm64"]
 bin = { resvg = "resvg" }
 
