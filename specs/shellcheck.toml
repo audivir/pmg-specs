@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/audivir/pmg/main/schema.json
+# statically linked
+bin = { shellcheck = "shellcheck" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "shellcheck"
+apt = "shellcheck"
+apk = "shellcheck"
+dnf = "ShellCheck"
+yum = "ShellCheck"
+
+[release]
+type = "github"
+repo = "koalaman/shellcheck"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "shellcheck-{{ tag }}.linux.x86_64.tar.xz"
+glibc_arm64 = "shellcheck-{{ tag }}.linux.aarch64.tar.xz"
+musl_x64 = "shellcheck-{{ tag }}.linux.x86_64.tar.xz"
+musl_arm64 = "shellcheck-{{ tag }}.linux.aarch64.tar.xz"
+macos_arm64 = "shellcheck-{{ tag }}.darwin.aarch64.tar.gz"
