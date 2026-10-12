@@ -1,15 +1,8 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
-# there are no release binaries, so bun installs the npm package; its script wants node, so a
-# wrapper runs it with bun instead
-# the release command uses curl
-deps = ["curl", "bun"]
-post_install = '''
-cat > "$PREFIX/bin/yaml-language-server" <<'EOF'
-#!/bin/sh
-exec bun "{{ dir }}/node_modules/yaml-language-server/bin/yaml-language-server" "$@"
-EOF
-chmod +x "$PREFIX/bin/yaml-language-server"
-'''
+# the npm package has no release binaries, and bun runs its script instead of node
+deps = ["bun"]
+content = true
+bin = { yaml-language-server = "bin/yaml-language-server" }
 
 test = "{{ cmd }} --version"
 [external]
@@ -17,18 +10,10 @@ brew = "yaml-language-server"
 # not apt, dnf, or yum, which lack it, nor apk, which only has it in edge
 
 [release]
-type = "command"
-cmd = '''
-curl -fsSL https://registry.npmjs.org/yaml-language-server/latest |
-  grep -o '"version":"[^"]*"' | head -n 1 | cut -d'"' -f4
-'''
+type = "npm"
 
 [download]
-type = "command"
-cmd = '''
-mkdir -p "$PREFIX/dir" "$PREFIX/bin"
-bun add --cwd "$PREFIX/dir" "yaml-language-server@{{ tag }}"
-'''
+type = "npm"
 
 [assets]
 glibc_x64 = "yaml-language-server"

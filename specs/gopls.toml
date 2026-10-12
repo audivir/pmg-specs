@@ -1,29 +1,18 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
-# gopls has no release binaries, so go builds it; the release command uses curl
-deps = ["curl", "go"]
+# gopls has no release binaries, so go builds it
+deps = ["go"]
+check = { args = ["version"] }
 
 test = "{{ cmd }} version"
 [external]
 brew = "gopls"
 apt = "gopls"
 apk = "gopls"
-dnf = "gopls"
-# not yum, which lacks it
+# not dnf, whose EPEL lacks it, nor yum, which lacks it
 
 [release]
-type = "command"
-cmd = '''
-curl -fsSL https://proxy.golang.org/golang.org/x/tools/gopls/@latest |
-  grep -o '"Version":"[^"]*"' | cut -d'"' -f4
-'''
+type = "go"
+module = "golang.org/x/tools/gopls"
 
 [download]
-type = "command"
-cmd = 'GOBIN="$PREFIX/bin" go install "golang.org/x/tools/gopls@{{ tag }}"'
-
-[assets]
-glibc_x64 = "gopls"
-glibc_arm64 = "gopls"
-musl_x64 = "gopls"
-musl_arm64 = "gopls"
-macos_arm64 = "gopls"
+type = "go"
