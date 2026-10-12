@@ -5,6 +5,8 @@ min_glibc = "2.29"
 platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
 deps = ["curl", "jq"]
 bin = { bw = "bw" }
+# bw only generates a zsh completion
+completions.bw.zsh.cmd = "bw completion --shell zsh"
 
 test = "{{ cmd }} --version"
 [external]
