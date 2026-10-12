@@ -1,22 +1,26 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the releases of eduvpn-common have only source archives, and their tags have no leading v, so
 # the module proxy has no version for them; go install resolves the tag from the repo
-# the release command uses curl
+# the build needs cgo, which go skips without a C compiler, so cc is a dependency and CC names it
+# (go looks for gcc); the release command uses curl
 
-deps = ["curl", "go"]
+deps = ["curl", "go", "cc"]
+env = { CC = "cc", CGO_ENABLED = "1" }
 # there is no --version, and the usage text has no version
 check = { args = ["-h"] }
 
 test = "{{ cmd }} -h 2>&1 | grep -q -- -country-code"
 
 [external]
-brew = "eduvpn-cli"
+# the formula is in the tap of audivir
+brew = "audivir/repo/eduvpn-cli"
 # not apt, apk, dnf, or yum, which lack it
 
 [release]
 type = "command"
 cmd = '''
-curl -fsSL https://codeberg.org/api/v1/repos/eduVPN/eduvpn-common/releases/latest |
+curl -fsSL --retry 3 --retry-all-errors \
+  https://codeberg.org/api/v1/repos/eduVPN/eduvpn-common/releases/latest |
   grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4
 '''
 

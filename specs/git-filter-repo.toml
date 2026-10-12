@@ -19,8 +19,7 @@ test = "{{ cmd }} --version"
 brew = "git-filter-repo"
 apt = "git-filter-repo"
 apk = "git-filter-repo"
-dnf = "git-filter-repo"
-# not yum, which lacks it
+# not dnf, whose packages are only in EPEL, nor yum, which lacks it
 
 [release]
 type = "github"
