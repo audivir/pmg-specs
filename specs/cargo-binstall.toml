@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# cargo runs it as the subcommand binstall, when it is in PATH
+bin = { cargo-binstall = "cargo-binstall" }
+# --version is the version of the crate to install
+check = { args = ["-V"] }
+
+test = "{{ cmd }} -V"
+[external]
+brew = "cargo-binstall"
+# not apt, apk, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "cargo-bins/cargo-binstall"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "cargo-binstall-x86_64-unknown-linux-gnu.tgz"
+glibc_arm64 = "cargo-binstall-aarch64-unknown-linux-gnu.tgz"
+musl_x64 = "cargo-binstall-x86_64-unknown-linux-musl.tgz"
+musl_arm64 = "cargo-binstall-aarch64-unknown-linux-musl.tgz"
+macos_arm64 = "cargo-binstall-aarch64-apple-darwin.zip"
