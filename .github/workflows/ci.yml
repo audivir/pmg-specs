@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v10.0.1
       - run: uvx --from https://github.com/zshsetup/pmg/archive/main.tar.gz pmg validate specs/*.toml
-      - run: uvx --from taplo taplo check specs/*.toml
+      - run: uvx tombi lint specs/*.toml
   changes:
     # the specs changed by the push or pull request, all of them if the install CI changed or on
     # a manual run; files next to a spec, in the dir named like it, count for the spec
