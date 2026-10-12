@@ -1,0 +1,35 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the release is the Python script and its docs for all platforms; the script wants python3, which
+# not every host has, so a wrapper runs it with uv, which fetches a Python if there is none
+deps = ["git", "uv"]
+content = true
+man = ["Documentation/man1/git-filter-repo.1"]
+post_install = '''
+cat > "$PREFIX/bin/git-filter-repo" <<'EOF'
+#!/bin/sh
+exec uv run --no-project --quiet "{{ dir }}/git-filter-repo" "$@"
+EOF
+chmod +x "$PREFIX/bin/git-filter-repo"
+'''
+
+test = "{{ cmd }} --version"
+[external]
+brew = "git-filter-repo"
+apt = "git-filter-repo"
+apk = "git-filter-repo"
+dnf = "git-filter-repo"
+# not yum, which lacks it
+
+[release]
+type = "github"
+repo = "newren/git-filter-repo"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "git-filter-repo-{{ version }}.tar.xz"
+glibc_arm64 = "git-filter-repo-{{ version }}.tar.xz"
+musl_x64 = "git-filter-repo-{{ version }}.tar.xz"
+musl_arm64 = "git-filter-repo-{{ version }}.tar.xz"
+macos_arm64 = "git-filter-repo-{{ version }}.tar.xz"
