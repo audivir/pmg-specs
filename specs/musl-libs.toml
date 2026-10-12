@@ -2,12 +2,13 @@
 # libstdc++ and libgcc_s of GCC for musl hosts without them, e.g. for bun and Rust
 
 platforms = ["musl_x64", "musl_arm64"]
-# older releases lack symbols of libstdc++ that bun needs; there is no check, as one would accept
-# the old libstdc++ of the host
+# the packages of older releases lack symbols that bun needs, so it depends on a version
 min_alpine = "3.17"
 deps = ["patchelf"]
 content = true
 keep = ["usr/lib/libstdc++.so.6*", "usr/lib/libgcc_s.so.1"]
+# the version of a system copy, which a spec like bun can require
+check = { libs = ["libstdc++.so.6", "libgcc_s.so.1"], cmd = ["apk", "info", "-v", "libstdc++"] }
 # musl looks up the dependencies of a library in the RUNPATH of that library
 post_install = """patchelf --set-rpath '$ORIGIN' "$PREFIX"/dir/usr/lib/libstdc++.so.6.*"""
 

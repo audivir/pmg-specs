@@ -1,7 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
-# bun links libstdc++ and libgcc_s, which bare musl hosts lack
+# bun links libstdc++ and libgcc_s, which bare musl hosts lack; it needs the symbols of GCC 12
 
-deps = ["musl-libs"]
+deps = ["musl-libs>=12"]
 bin = { bun = "bun" }
 post_install = """
 {% if deps["musl-libs"].dir %}
