@@ -1,0 +1,27 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# min_glibc = "2.17"
+bin = { tinymist = "tinymist" }
+# --version prints a build report, whose describe line has the version
+check = { regex = '(?<=Build Git Describe:  v)\d+(?:\.\d+)+' }
+completions.tinymist.zsh.cmd = "tinymist completion zsh"
+completions.tinymist.bash.cmd = "tinymist completion bash"
+completions.tinymist.fish.cmd = "tinymist completion fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "tinymist"
+# not apt, dnf, or yum, which lack it, nor apk, which only has it in edge
+
+[release]
+type = "github"
+repo = "Myriad-Dreamin/tinymist"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "tinymist-x86_64-unknown-linux-gnu.tar.gz"
+glibc_arm64 = "tinymist-aarch64-unknown-linux-gnu.tar.gz"
+musl_x64 = "tinymist-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "tinymist-aarch64-unknown-linux-musl.tar.gz"
+macos_arm64 = "tinymist-aarch64-apple-darwin.tar.gz"
