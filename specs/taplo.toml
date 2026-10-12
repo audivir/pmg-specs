@@ -1,9 +1,6 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the assets are gzipped binaries, which are statically linked
-post_install = '''
-gunzip -c "$CONTENT"/taplo-*.gz > "$PREFIX/bin/taplo"
-chmod +x "$PREFIX/bin/taplo"
-'''
+bin = { taplo = "{{ asset }}" }
 completions.taplo.zsh.cmd = "taplo completions zsh"
 completions.taplo.bash.cmd = "taplo completions bash"
 completions.taplo.fish.cmd = "taplo completions fish"
