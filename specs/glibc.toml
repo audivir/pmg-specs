@@ -2,6 +2,7 @@
 # user-space glibc for musl hosts, from the sysroot conda-forge builds against; glibc programs need
 # `patchelf --set-interpreter {{ dir }}/loader`; older glibc hosts count as musl hosts, so that it
 # also serves the musl assets they get through min_glibc
+
 platforms = ["musl_x64", "musl_arm64"]
 min_glibc = "2.39"
 deps = ["patchelf"]
@@ -19,6 +20,7 @@ remove = [
 post_install = 'cd "$PREFIX/dir" && ln -s lib64/ld-linux-*.so.* loader'
 
 test = '"{{ dir }}/loader" --version'
+
 [external]
 # none, as musl hosts have no glibc package
 

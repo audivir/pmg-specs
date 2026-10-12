@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { screen = "bin/screen" }
 man = ["share/man/man1/screen.1"]
 
@@ -8,6 +9,7 @@ test = '''
 export SCREENDIR="$(mktemp -d)" &&
   {{ cmd }} -DmS test sh -c 'touch "$SCREENDIR/ran"' && test -f "$SCREENDIR/ran"
 '''
+
 [external]
 brew = "screen"
 apt = "screen"

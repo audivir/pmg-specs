@@ -14,7 +14,8 @@ paths = ["{{ dirs.cargo }}/bin"]
 # rustup itself, then its toolchains
 upgrade = "{{ dirs.cargo }}/bin/rustup self update && {{ dirs.cargo }}/bin/rustup update --no-self-update"
 
-test = '{{ cmd }} --version && {{ cmds.cargo }} --version && {{ cmds.rustc }} --version'
+test = "{{ cmd }} --version && {{ cmds.cargo }} --version && {{ cmds.rustc }} --version"
+
 [external]
 brew = "rustup"
 apt = "rustup"

@@ -2,10 +2,12 @@
 # the zone files of the IANA time zone database, also where the system has them, so that every host
 # has the same ones; glibc and Python find them through TZDIR and PYTHONTZPATH, while musl ignores
 # TZDIR and only reads them as the path of a zone file in TZ
+
 content = "share/zoneinfo"
 env = { TZDIR = "{{ dir }}", PYTHONTZPATH = "{{ dir }}" }
 
 test = 'test -s "{{ dir }}/Europe/Berlin" && test -s "{{ dir }}/zone1970.tab"'
+
 [external]
 # none, so that pmg installs it even where the system has tzdata
 

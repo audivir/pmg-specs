@@ -1,9 +1,11 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the static builds of cpp-linter, whose assets name the major version of LLVM; a newer one needs
 # a new spec
+
 bin = { clang-format = "{{ asset }}" }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "clang-format"
 apt = "clang-format"

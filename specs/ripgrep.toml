@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 min_glibc = "2.18"
 bin = { rg = "rg" }
 man = ["doc/rg.1"]
@@ -7,6 +8,7 @@ completions.rg.bash = "complete/rg.bash"
 completions.rg.fish = "complete/rg.fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "ripgrep"
 apt = "ripgrep"

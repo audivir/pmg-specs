@@ -1,11 +1,13 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # NVIDIA GPUs on Linux and Apple GPUs on macOS; the build has no musl variant, as nvtop loads the
 # library of the NVIDIA driver at runtime, and no backends that need libdrm
+
 platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
 bin = { nvtop = "bin/nvtop" }
 man = ["share/man/man1/nvtop.1"]
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "nvtop"
 apt = "nvtop"

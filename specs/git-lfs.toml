@@ -1,5 +1,6 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # a Go program without dynamic libraries; git runs it as `git lfs` from PATH, whatever git it is
+
 deps = ["git"]
 bin = { git-lfs = "git-lfs" }
 man = ["man/man1/*.1", "man/man5/*.5", "man/man7/*.7"]
@@ -7,7 +8,8 @@ completions.git-lfs.zsh.cmd = "git-lfs completion zsh"
 completions.git-lfs.bash.cmd = "git-lfs completion bash"
 completions.git-lfs.fish.cmd = "git-lfs completion fish"
 
-test = '{{ cmd }} version'
+test = "{{ cmd }} version"
+
 [external]
 brew = "git-lfs"
 apt = "git-lfs"

@@ -1,6 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # git finds libexec and share relative to its binary, so the whole archive is the package dir; macOS
 # gives git the path of the symlink it was run by, so there bin links to wrappers running the binary
+
 content = true
 links.git = "{{ dir }}/links/git"
 links.git-receive-pack = "{{ dir }}/links/git-receive-pack"
@@ -22,7 +23,8 @@ man = ["share/man/man1/*.1", "share/man/man5/*.5", "share/man/man7/*.7"]
 completions.git = { bash = "share/bash-completion/completions/git" }
 check = { dev_tool = true }
 
-test = '{{ cmd }} init -q repo && {{ cmd }} -C repo status'
+test = "{{ cmd }} init -q repo && {{ cmd }} -C repo status"
+
 [external]
 brew = "git"
 apt = "git ca-certificates"

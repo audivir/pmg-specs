@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 min_glibc = "2.18"
 bin = { fd = "fd" }
 man = ["fd.1"]
@@ -7,6 +8,7 @@ completions.fd.bash = "autocomplete/fd.bash"
 completions.fd.fish = "autocomplete/fd.fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "fd"
 # not apt, which names the command fdfind

@@ -1,6 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the release has no musl build for arm64, and its glibc build of arm64 needs glibc 2.34; x64 is
 # statically linked
+
 min_glibc = "2.34"
 platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "macos_arm64"]
 bin = { typstyle = "{{ asset }}" }
@@ -9,6 +10,7 @@ completions.typstyle.bash.cmd = "typstyle completions bash"
 completions.typstyle.fish.cmd = "typstyle completions fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "typstyle"
 # not apt, apk, dnf, or yum, which lack it

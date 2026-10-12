@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { dirdiff = "{{ asset }}" }
 completions.dirdiff.zsh.cmd = "dirdiff --gen-completions zsh"
 completions.dirdiff.bash.cmd = "dirdiff --gen-completions bash"
 completions.dirdiff.fish.cmd = "dirdiff --gen-completions fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "audivir/repo/dirdiff"
 # not apt, apk, dnf, or yum, which lack it

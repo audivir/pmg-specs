@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { gh = "bin/gh" }
 # a man page for each subcommand, too many to list
 post_install = 'mkdir -p "$PREFIX/man/man1" && cp "$CONTENT"/share/man/man1/*.1 "$PREFIX/man/man1/"'
@@ -7,6 +8,7 @@ completions.gh.bash.cmd = "gh completion -s bash"
 completions.gh.fish.cmd = "gh completion -s fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "gh"
 apt = "gh"

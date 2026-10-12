@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { tree = "bin/tree" }
 man = ["share/man/man1/tree.1"]
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "tree"
 apt = "tree"

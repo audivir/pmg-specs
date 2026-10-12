@@ -2,11 +2,13 @@
 # the releases of eduvpn-common have only source archives, and their tags have no leading v, so
 # the module proxy has no version for them; go install resolves the tag from the repo
 # the release command uses curl
+
 deps = ["curl", "go"]
 # there is no --version, and the usage text has no version
 check = { args = ["-h"] }
 
 test = "{{ cmd }} -h 2>&1 | grep -q -- -country-code"
+
 [external]
 brew = "eduvpn-cli"
 # not apt, apk, dnf, or yum, which lack it

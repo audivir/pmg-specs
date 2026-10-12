@@ -1,5 +1,6 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the release command uses curl
+
 deps = ["curl"]
 bin = { tea = "{{ asset }}" }
 post_install = 'mkdir -p "$PREFIX/man/man8" && "$PREFIX/bin/tea" man --out "$PREFIX/man/man8/tea.8"'
@@ -8,6 +9,7 @@ completions.tea.bash.cmd = "tea completion bash"
 completions.tea.fish.cmd = "tea completion fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "tea"
 # not apt, whose tea is a text editor, nor dnf or yum, which lack it

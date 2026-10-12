@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the xxd of the vim-static archive, for hosts that want the hex dumper without vim
+
 bin = { xxd = "bin/xxd" }
 man = ["share/man/man1/xxd.1"]
 remove = ["share/vim", "bin/vim"]
 
 test = 'test "$(printf pmg | {{ cmd }} -p)" = 706d67 && test "$(printf 706d67 | {{ cmd }} -r -p)" = pmg'
+
 [external]
 # not brew, which has no formula for it (macOS ships it with vim)
 apt = "xxd"

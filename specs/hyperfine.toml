@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { hyperfine = "hyperfine" }
 man = ["hyperfine.1"]
 completions.hyperfine.zsh = "autocomplete/_hyperfine"
@@ -6,6 +7,7 @@ completions.hyperfine.bash = "autocomplete/hyperfine.bash"
 completions.hyperfine.fish = "autocomplete/hyperfine.fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "hyperfine"
 apt = "hyperfine"

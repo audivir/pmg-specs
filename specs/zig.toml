@@ -1,12 +1,14 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # zig finds its lib dir relative to the real path of its binary, so bin gets a symlink
 # the release and download commands use curl
+
 deps = ["curl"]
 content = true
 links = { zig = "{{ dir }}/zig" }
 check = { args = ["version"] }
 
 test = "{{ cmd }} env"
+
 [external]
 brew = "zig"
 # not apt or yum, which lack it, nor dnf, whose EPEL has it only for x86_64

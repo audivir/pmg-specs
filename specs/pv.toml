@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { pv = "bin/pv" }
 man = ["share/man/man1/pv.1"]
 
 test = 'test "$(echo pmg | {{ cmd }} -q)" = pmg'
+
 [external]
 brew = "pv"
 apt = "pv"

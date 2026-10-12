@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { typst = "typst" }
 completions.typst.zsh.cmd = "typst completions zsh"
 completions.typst.bash.cmd = "typst completions bash"
 completions.typst.fish.cmd = "typst completions fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "typst"
 apk = "typst"

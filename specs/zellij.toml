@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { zellij = "zellij" }
 completions.zellij.zsh.cmd = "zellij setup --generate-completion zsh"
 completions.zellij.bash.cmd = "zellij setup --generate-completion bash"
 completions.zellij.fish.cmd = "zellij setup --generate-completion fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "zellij"
 # not apt, dnf, or yum, which lack it

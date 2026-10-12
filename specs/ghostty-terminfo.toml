@@ -6,9 +6,11 @@
 # its entry, so macOS hosts need it as well, where ncurses names the dirs in hex (78 for x, 67
 # for g)
 # the trailing colon keeps the terminfo of the system
+
 env = { TERMINFO_DIRS = "{{ dir }}/terminfo:" }
 
 test = 'test -s "{{ dir }}/terminfo/x/xterm-ghostty" && test -s "{{ dir }}/terminfo/78/xterm-ghostty"'
+
 [external]
 # none, as no package manager has xterm-ghostty
 

@@ -1,11 +1,13 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # a plugin of docker, which only looks in ~/.docker/cli-plugins, the dirs of cliPluginsExtraDirs in
 # ~/.docker/config.json (e.g. ~/.local/bin), and the system ones; it also runs as docker-compose
+
 bin = { docker-compose = "{{ asset }}" }
 # there is no --version
 check = { args = ["version"] }
 
 test = "{{ cmd }} version"
+
 [external]
 brew = "docker-compose"
 # not apt, whose docker-compose is the Python version 1 on Ubuntu, nor apk, dnf, or yum, which only

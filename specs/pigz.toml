@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { pigz = "bin/pigz", unpigz = "bin/unpigz" }
 man = ["share/man/man1/pigz.1"]
 
 test = 'test "$(echo pmg | {{ cmd }} | {{ cmd }} -d)" = pmg'
+
 [external]
 brew = "pigz"
 apt = "pigz"

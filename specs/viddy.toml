@@ -1,7 +1,9 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { viddy = "viddy" }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "viddy"
 apk = "viddy"

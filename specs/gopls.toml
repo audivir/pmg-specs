@@ -1,9 +1,11 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # gopls has no release binaries, so go builds it
+
 deps = ["go"]
 check = { args = ["version"] }
 
 test = "{{ cmd }} version"
+
 [external]
 brew = "gopls"
 apt = "gopls"

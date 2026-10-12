@@ -1,6 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # GOPATH holds the module cache and the tools from go install, so it is not owned by go
 # the release and download commands use curl
+
 deps = ["curl"]
 content = true
 env = { GOROOT = "{{ dir }}", GOPATH = "{{ data }}/go" }
@@ -8,6 +9,7 @@ paths = ["{{ dir }}/bin", "{{ data }}/go/bin"]
 check = { args = ["version"] }
 
 test = "{{ cmd }} version"
+
 [external]
 brew = "go"
 apt = "golang"

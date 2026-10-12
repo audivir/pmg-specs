@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { sqlite3 = "bin/sqlite3" }
 man = ["share/man/man1/sqlite3.1"]
 
 test = '''test "$(echo 'select 6 * 7;' | {{ cmd }})" = 42'''
+
 [external]
 brew = "sqlite"
 apt = "sqlite3"

@@ -1,11 +1,13 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the assets are gzipped binaries, which are statically linked
+
 bin = { taplo = "{{ asset }}" }
 completions.taplo.zsh.cmd = "taplo completions zsh"
 completions.taplo.bash.cmd = "taplo completions bash"
 completions.taplo.fish.cmd = "taplo completions fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "taplo"
 # not apt, apk, dnf, or yum, which lack it

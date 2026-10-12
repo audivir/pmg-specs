@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the static musl build runs on all Linux hosts, the glibc one crashes on older glibc
+
 bin = { curl = "curl" }
 
 test = "{{ cmd }} --version"
+
 [external]
 # not brew, whose curl is not linked into PATH, as macOS ships curl
 apt = "curl ca-certificates"

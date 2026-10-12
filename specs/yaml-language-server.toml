@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the npm package has no release binaries, and bun runs its script instead of node
+
 deps = ["bun"]
 content = true
 bin = { yaml-language-server = "bin/yaml-language-server" }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "yaml-language-server"
 # not apt, dnf, or yum, which lack it, nor apk, which only has it in edge

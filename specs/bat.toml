@@ -1,4 +1,5 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 min_glibc = "2.18"
 bin = { bat = "bat" }
 man = ["bat.1"]
@@ -7,6 +8,7 @@ completions.bat.bash = "autocomplete/bat.bash"
 completions.bat.fish = "autocomplete/bat.fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "bat"
 # not apt, which names the command batcat

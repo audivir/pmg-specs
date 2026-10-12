@@ -1,11 +1,13 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the Linux builds are static musl builds, which run on glibc hosts, too
+
 bin = { tombi = "tombi" }
 completions.tombi.zsh.cmd = "tombi completion zsh"
 completions.tombi.bash.cmd = "tombi completion bash"
 completions.tombi.fish.cmd = "tombi completion fish"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "tombi"
 # not apt, apk, dnf, or yum, which lack it

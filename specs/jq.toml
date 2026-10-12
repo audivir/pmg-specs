@@ -1,7 +1,9 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { jq = "{{ asset }}" }
 
 test = '''test "$(echo '{"a": 1}' | {{ cmd }} .a)" = 1'''
+
 [external]
 brew = "jq"
 apt = "jq"

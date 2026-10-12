@@ -2,6 +2,7 @@
 # the tag is the version and build of the release, as in its URL; the release command uses curl
 # there is no musl build, and the glibc one needs glibc 2.26, so musl and older glibc hosts run it
 # with the glibc of pmg
+
 min_glibc = "2.26"
 deps = ["curl"]
 platform_deps.musl_x64 = ["glibc", "patchelf"]
@@ -16,6 +17,7 @@ patchelf --set-interpreter "$glibc/loader" --add-rpath "$glibc/lib64:$glibc/usr/
 '''
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "antigravity-cli"
 # not apt, apk, dnf, or yum, which lack it

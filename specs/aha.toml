@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { aha = "bin/aha" }
 man = ["share/man/man1/aha.1"]
 
 test = 'test "$(echo pmg | {{ cmd }} --no-header)" = "pmg"'
+
 [external]
 brew = "aha"
 apt = "aha"

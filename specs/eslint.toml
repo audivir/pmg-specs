@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the npm package has no release binaries, and bun runs its script instead of node
+
 deps = ["bun"]
 content = true
 bin = { eslint = "bin/eslint.js" }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "eslint"
 apt = "eslint"

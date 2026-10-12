@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # cargo runs it as the subcommand binstall, when it is in PATH
+
 bin = { cargo-binstall = "cargo-binstall" }
 # --version is the version of the crate to install
 check = { args = ["-V"] }
 
 test = "{{ cmd }} -V"
+
 [external]
 brew = "cargo-binstall"
 # not apt, apk, dnf, or yum, which lack it

@@ -2,10 +2,12 @@
 # the speedtest CLI of Ookla, statically linked, which has no releases to query; the tag is the
 # version of its download page. The first run asks to accept the license, or takes
 # --accept-license.
+
 bin = { speedtest = "speedtest" }
 man = ["speedtest.5"]
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "teamookla/speedtest/speedtest"
 # not apt, apk, dnf, or yum, which have it only from the repos of Ookla

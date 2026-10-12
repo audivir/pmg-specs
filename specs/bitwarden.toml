@@ -1,6 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the bw CLI, released with the other clients of Bitwarden in one repo under tags like cli-v2026.9.1
 # the build of Bitwarden is for glibc 2.29 or newer, and has none for musl
+
 min_glibc = "2.29"
 platforms = ["glibc_x64", "glibc_arm64", "macos_arm64"]
 deps = ["curl", "jq"]
@@ -9,6 +10,7 @@ bin = { bw = "bw" }
 completions.bw.zsh.cmd = "bw completion --shell zsh"
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "bitwarden-cli"
 # not apt, apk, dnf, or yum, which lack it

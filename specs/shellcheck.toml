@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # statically linked
+
 bin = { shellcheck = "shellcheck" }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "shellcheck"
 apt = "shellcheck"

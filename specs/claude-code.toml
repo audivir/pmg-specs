@@ -1,10 +1,12 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # min_glibc = "2.26"
 # the release and download commands use curl, and the binary is zstd-compressed
+
 deps = ["curl", "zstd"]
 check = { cmd = ["claude", "--version"] }
 
 test = "{{ cmd }} --version"
+
 [external]
 brew = "claude-code"
 # not apt, apk, dnf, or yum, which lack it

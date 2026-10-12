@@ -1,11 +1,13 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # iotop-c, which reads the taskstats interface of the Linux kernel, so there is no macOS build; the
 # builds of iotop-static run on glibc 2.17 or newer and, on musl, are fully static
+
 platforms = ["glibc_x64", "glibc_arm64", "musl_x64", "musl_arm64"]
 bin = { iotop = "bin/iotop" }
 man = ["share/man/man8/iotop.8"]
 
 test = "{{ cmd }} --version"
+
 [external]
 # not brew, as macOS has no iotop
 apt = "iotop"

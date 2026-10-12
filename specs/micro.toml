@@ -1,8 +1,10 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
 bin = { micro = "micro" }
 man = ["micro.1"]
 
 test = "{{ cmd }} -version"
+
 [external]
 brew = "micro"
 apt = "micro"

@@ -1,6 +1,7 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 # the archive is the package dir, as vim finds its runtime files through $VIM; the commands that
 # vim runs differently by their name link to it
+
 content = true
 links.vim = "{{ dir }}/bin/vim"
 links.vi = "{{ dir }}/bin/vim"
@@ -26,6 +27,7 @@ out="$({{ cmd }} --version)" && echo "$out" | grep -q 'Vi IMproved' &&
   {{ cmd }} -u NONE -es -c 'redir! > '"$file"' | echo $VIMRUNTIME | redir END | qa!' </dev/null &&
   test -f "$(tr -d '[:space:]' < "$file")/syntax/syntax.vim"
 '''
+
 [external]
 brew = "vim"
 apt = "vim"
