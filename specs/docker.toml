@@ -1,0 +1,34 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the CLI from the static archives, which have the engine, too; the engine needs root and a
+# service, so only the client is installed
+# the release command uses curl
+deps = ["curl"]
+bin = { docker = "docker" }
+completions.docker.zsh.cmd = "docker completion zsh"
+completions.docker.bash.cmd = "docker completion bash"
+completions.docker.fish.cmd = "docker completion fish"
+
+test = "{{ cmd }} --version"
+[external]
+brew = "docker"
+apk = "docker-cli"
+# not apt, whose docker.io also installs the engine, nor dnf or yum, which only have the engine
+
+# the archives of a version are listed in the directory of download.docker.com
+[release]
+type = "command"
+cmd = '''
+curl -fsSL https://download.docker.com/linux/static/stable/x86_64/ |
+  grep -o 'docker-[0-9][0-9.]*\.tgz' | sort -V | tail -n 1 | sed -e 's/^docker-//' -e 's/\.tgz$//'
+'''
+
+[download]
+type = "url"
+url = "https://download.docker.com/{{ asset }}"
+
+[assets]
+glibc_x64 = "linux/static/stable/x86_64/docker-{{ version }}.tgz"
+glibc_arm64 = "linux/static/stable/aarch64/docker-{{ version }}.tgz"
+musl_x64 = "linux/static/stable/x86_64/docker-{{ version }}.tgz"
+musl_arm64 = "linux/static/stable/aarch64/docker-{{ version }}.tgz"
+macos_arm64 = "mac/static/stable/aarch64/docker-{{ version }}.tgz"
