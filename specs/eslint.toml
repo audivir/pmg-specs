@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the npm package has no release binaries, and bun runs its script instead of node
+deps = ["bun"]
+content = true
+bin = { eslint = "bin/eslint.js" }
+
+test = "{{ cmd }} --version"
+[external]
+brew = "eslint"
+apt = "eslint"
+# not apk, dnf, or yum, which lack it
+
+[release]
+type = "npm"
+
+[download]
+type = "npm"
+
+[assets]
+glibc_x64 = "eslint"
+glibc_arm64 = "eslint"
+musl_x64 = "eslint"
+musl_arm64 = "eslint"
+macos_arm64 = "eslint"
