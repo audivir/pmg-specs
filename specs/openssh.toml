@@ -1,0 +1,32 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# one binary that runs as the tool its name says, the others are symlinks to it; sshd needs the
+# sshd-session and sshd-auth of {{ dir }}/libexec, see SshdSessionPath and SshdAuthPath
+
+content = true
+links = { ssh = "{{ dir }}/bin/ssh", scp = "{{ dir }}/bin/scp", sftp = "{{ dir }}/bin/sftp", ssh-add = "{{ dir }}/bin/ssh-add", ssh-agent = "{{ dir }}/bin/ssh-agent", ssh-keygen = "{{ dir }}/bin/ssh-keygen", ssh-keyscan = "{{ dir }}/bin/ssh-keyscan", sshd = "{{ dir }}/sbin/sshd" }
+man = ["share/man/man1/*.1", "share/man/man5/*.5", "share/man/man8/*.8"]
+
+# ssh prints the version to stderr, and has no --version
+check = { args = ["-V"] }
+test = "{{ cmd }} -V"
+
+[external]
+# not brew, as macOS ships OpenSSH
+apt = "openssh-client"
+apk = "openssh-client"
+dnf = "openssh-clients"
+yum = "openssh-clients"
+
+[release]
+type = "github"
+repo = "zshsetup/openssh-static"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "openssh-static-linux-amd64.tar.gz"
+glibc_arm64 = "openssh-static-linux-arm64.tar.gz"
+musl_x64 = "openssh-static-linux-musl-amd64.tar.gz"
+musl_arm64 = "openssh-static-linux-musl-arm64.tar.gz"
+macos_arm64 = "openssh-static-macos-arm64.tar.gz"
