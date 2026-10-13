@@ -2,7 +2,7 @@
 # the openssl tool is a name of the binary of openssh, which links OpenSSL once; the link is to
 # the ssh of the bin dir, which stays when openssh is upgraded, and is run by the name openssl
 
-deps = ["openssh"]
+deps = ["openssh!"]
 links = { openssl = "{{ dir }}/bin/openssl" }
 # there is no --version
 check = { args = ["version"] }
