@@ -1,6 +1,9 @@
 #:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
 
-bin = { pigz = "bin/pigz", unpigz = "bin/unpigz" }
+# unpigz is a symlink to pigz, which pigz detects by the name it is run as
+
+content = true
+links = { pigz = "{{ dir }}/bin/pigz", unpigz = "{{ dir }}/bin/unpigz" }
 man = ["share/man/man1/pigz.1"]
 
 test = 'test "$(echo pmg | {{ cmd }} | {{ cmd }} -d)" = pmg'
