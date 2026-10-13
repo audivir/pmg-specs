@@ -1,0 +1,29 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the password manager gopass, a static Go binary with the age library built in; its age backend
+# needs no gpg or pinentry, and its agent keeps the unlocked identity for age.agent-timeout seconds
+
+bin = { gopass = "gopass" }
+completions.gopass.zsh.cmd = "gopass completion zsh"
+completions.gopass.bash.cmd = "gopass completion bash"
+completions.gopass.fish.cmd = "gopass completion fish"
+
+test = "{{ cmd }} --version"
+
+[external]
+brew = "gopass"
+# not apt, apk, dnf, or yum, whose releases are often older than the agent of the age backend
+
+[release]
+type = "github"
+repo = "gopasspw/gopass"
+
+[download]
+type = "github"
+
+# a static binary, so the same archive for glibc and musl
+[assets]
+glibc_x64 = "gopass-{{ version }}-linux-amd64.tar.gz"
+glibc_arm64 = "gopass-{{ version }}-linux-arm64.tar.gz"
+musl_x64 = "gopass-{{ version }}-linux-amd64.tar.gz"
+musl_arm64 = "gopass-{{ version }}-linux-arm64.tar.gz"
+macos_arm64 = "gopass-{{ version }}-darwin-arm64.tar.gz"
