@@ -1,0 +1,32 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# the openssl tool is a name of the binary of openssh, which links OpenSSL once; the link is to
+# the ssh of the bin dir, which stays when openssh is upgraded, and is run by the name openssl
+
+deps = ["openssh"]
+links = { openssl = "{{ dir }}/bin/openssl" }
+# there is no --version
+check = { args = ["version"] }
+
+test = "{{ cmd }} version"
+
+[external]
+# not brew, as macOS ships LibreSSL
+apt = "openssl"
+apk = "openssl"
+dnf = "openssl"
+yum = "openssl"
+
+[release]
+type = "static"
+tag = "1"
+
+[download]
+type = "command"
+cmd = '''
+{% if not deps["openssh"].dir %}
+echo "openssl needs the openssh of pmg, not one outside of it" >&2
+exit 1
+{% endif %}
+mkdir -p "$PREFIX/dir/bin"
+ln -s "{{ bin }}/ssh" "$PREFIX/dir/bin/openssl"
+'''
