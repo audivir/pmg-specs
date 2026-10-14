@@ -1,0 +1,24 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+
+bin = { dust = "dust" }
+
+test = "{{ cmd }} --version"
+
+[external]
+brew = "dust"
+apk = "dust"
+# not apt, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "bootandy/dust"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "dust-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+glibc_arm64 = "dust-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
+musl_x64 = "dust-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+musl_arm64 = "dust-{{ tag }}-aarch64-unknown-linux-musl.tar.gz"
+macos_arm64 = "dust-{{ tag }}-aarch64-apple-darwin.tar.gz"
