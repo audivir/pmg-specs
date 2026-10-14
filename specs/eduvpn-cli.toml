@@ -5,7 +5,9 @@
 # (go looks for gcc); the release command uses curl
 
 deps = ["curl", "go", "cc"]
-env = { CC = "cc", CGO_ENABLED = "1" }
+# the internal linker of go cannot resolve libc symbols like gai_strerror on musl, so the external
+# one links
+env = { CC = "cc", CGO_ENABLED = "1", GOFLAGS = "-ldflags=-linkmode=external" }
 # there is no --version, and the usage text has no version
 check = { args = ["-h"] }
 
@@ -19,7 +21,7 @@ brew = "audivir/repo/eduvpn-cli"
 [release]
 type = "command"
 cmd = '''
-curl -fsSL --retry 3 --retry-all-errors \
+curl -fsSL --retry 3 \
   https://codeberg.org/api/v1/repos/eduVPN/eduvpn-common/releases/latest |
   grep -o '"tag_name":"[^"]*"' | cut -d'"' -f4
 '''
