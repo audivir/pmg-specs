@@ -1,0 +1,25 @@
+#:schema https://raw.githubusercontent.com/zshsetup/pmg/main/schema.json
+# a pager for the diff of git and a diff of its own, which has no musl build for arm64
+
+min_glibc = "2.18"
+bin = { delta = "delta" }
+
+test = "{{ cmd }} --version"
+
+[external]
+brew = "git-delta"
+apk = "delta"
+# not apt, dnf, or yum, which lack it
+
+[release]
+type = "github"
+repo = "dandavison/delta"
+
+[download]
+type = "github"
+
+[assets]
+glibc_x64 = "delta-{{ tag }}-x86_64-unknown-linux-gnu.tar.gz"
+glibc_arm64 = "delta-{{ tag }}-aarch64-unknown-linux-gnu.tar.gz"
+musl_x64 = "delta-{{ tag }}-x86_64-unknown-linux-musl.tar.gz"
+macos_arm64 = "delta-{{ tag }}-aarch64-apple-darwin.tar.gz"
